@@ -1,3 +1,4 @@
+#pragma once
 #include "Boundary.cpp"
 #include "Ball.cpp"
 #include "Paddle.cpp"
@@ -9,11 +10,12 @@ private:
 	Boundary boundary;
 	Ball ball;
 	Paddle paddle;
+	TimeService timeService;
 
 public:
 	GameManager()
 	{
-		//TimeService::initialize();
+		timeService.initialize();
 	}
 
 	void PlayGame(RenderWindow& window)
@@ -24,9 +26,9 @@ public:
 
 	void GameUpdate()
 	{
-		//TimeService::update();
+		timeService.update();
 		paddle.MovePaddles();
-		ball.MoveBall(paddle.GetLeftPaddleSprite(), paddle.GetRightPaddleSprite());  // Move ball and check for collisions
+		ball.MoveBall(paddle.GetLeftPaddleSprite(), paddle.GetRightPaddleSprite(), timeService.getDeltaTime());  // Move ball and check for collisions
 	}
 
 	void DrawGameObject(RenderWindow& window)

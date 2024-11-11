@@ -2,19 +2,19 @@
 #include <chrono>
 using namespace std;
 
-static class TimeService
+class TimeService
 {
 private:
-	static chrono::time_point<chrono::steady_clock> previous_time;
-	static float delta_time;
+	chrono::time_point<chrono::steady_clock> previous_time;
+	float delta_time;
 
-	static void updateDeltaTime()
+	void updateDeltaTime()
 	{
 		delta_time = calculateDeltaTime();
 		updatePreviousTime();
 	}
 
-	static float calculateDeltaTime()
+	float calculateDeltaTime()
 	{
 		// Calculate time difference in microseconds between the current and previous frame.
 		int delta = std::chrono::duration_cast<std::chrono::microseconds>(
@@ -25,25 +25,25 @@ private:
 	}
 
 	// Update previous_time to the current time
-	static void updatePreviousTime()
+	void updatePreviousTime()
 	{
 		previous_time = std::chrono::steady_clock::now();
 	}
 
 public:
 
-	static void initialize()
+	void initialize()
 	{
 		previous_time = std::chrono::steady_clock::now();
 		delta_time = 0;
 	}
 
-	static void update()
+	void update()
 	{
 		updateDeltaTime();
 	}
 
-	static float getDeltaTime()
+	float getDeltaTime()
 	{
 		return delta_time;
 	}

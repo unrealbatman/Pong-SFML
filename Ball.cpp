@@ -1,5 +1,6 @@
+#pragma once
 #include <SFML/Graphics.hpp>
-//#include "TimeService.cpp"
+#include <iostream>
 using namespace sf;
 
 class Ball
@@ -10,7 +11,7 @@ private:
 
     Vector2f velocity;   // Velocity vector for ball movement
     float ballSpeed = 0.1f; // Initial speed of the ball
-    float delayDuration = 1.0f;  // 1 second delay
+    float delayDuration = 2.0f;  // 1 second delay
     bool delayedStart = true;
     float elapsedDelayTime = 0.0f;
 
@@ -30,8 +31,8 @@ private:
     {
         pongBallSprite.setPosition(615, 335);
         velocity = Vector2f(ballSpeed, ballSpeed);
-        //delayedStart = true;          // Enable delay
-        //elapsedDelayTime = 0.0f;      // Reset elapsed delay time
+        delayedStart = true;          // Enable delay
+        elapsedDelayTime = 0.0f;      // Reset elapsed delay time
     }
 
 public:
@@ -40,21 +41,22 @@ public:
 		CreatePongBall();
 	}
 
-    void MoveBall(const RectangleShape& leftPaddle, const RectangleShape& rightPaddle)
+    void MoveBall(const RectangleShape& leftPaddle, const RectangleShape& rightPaddle, float deltaTime)
     {
-        //// Update delay time if delayedStart is enabled
-        //if (delayedStart)
-        //{
-        //    elapsedDelayTime += TimeService::getDeltaTime();
-        //    if (elapsedDelayTime >= delayDuration)
-        //    {
-        //        delayedStart = false;  // End delay
-        //    }
-        //    else
-        //    {
-        //        return;  // Exit without moving the ball until delay is over
-        //    }
-        //}
+        // Update delay time if delayedStart is enabled
+        if (delayedStart)
+        {
+            elapsedDelayTime += deltaTime;
+            std::cout << elapsedDelayTime;
+            if (elapsedDelayTime >= delayDuration)
+            {
+                delayedStart = false;  // End delay
+            }
+            else
+            {
+                return;  // Exit without moving the ball until delay is over
+            }
+        }
 
         // Update ball position
         pongBallSprite.move(velocity);
