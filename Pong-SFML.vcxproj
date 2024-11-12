@@ -135,12 +135,21 @@
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Boundary.cpp" />
-    <ClCompile Include="EventPollingManager.cpp" />
-    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="EventService.cpp" />
+    <ClCompile Include="GameService.cpp" />
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="Pong-SFML.cpp" />
     <ClCompile Include="TimeService.cpp" />
     <ClCompile Include="UIService.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ball.h" />
+    <ClInclude Include="Boundary.h" />
+    <ClInclude Include="EventService.h" />
+    <ClInclude Include="GameService.h" />
+    <ClInclude Include="Paddle.h" />
+    <ClInclude Include="TimeService.h" />
+    <ClInclude Include="UIService.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

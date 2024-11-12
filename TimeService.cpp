@@ -1,50 +1,39 @@
-#pragma once
-#include <chrono>
-using namespace std;
+#include "TimeService.h"
 
-class TimeService
+void TimeService::UpdateDeltaTime()
 {
-private:
-	chrono::time_point<chrono::steady_clock> previous_time;
-	float delta_time;
+	delta_time = CalculateDeltaTime();
+	UpdatePreviousTime();
+}
 
-	void updateDeltaTime()
-	{
-		delta_time = calculateDeltaTime();
-		updatePreviousTime();
-	}
+float TimeService::CalculateDeltaTime()
+{
+	// Calculate time difference in microseconds between the current and previous frame.
+	int delta = std::chrono::duration_cast<std::chrono::microseconds>(
+		std::chrono::steady_clock::now() - previous_time).count();
 
-	float calculateDeltaTime()
-	{
-		// Calculate time difference in microseconds between the current and previous frame.
-		int delta = std::chrono::duration_cast<std::chrono::microseconds>(
-			std::chrono::steady_clock::now() - previous_time).count();
+	// To convert delta time from microseconds into seconds.
+	return static_cast<float>(delta) / static_cast<float>(1000000);
+}
 
-		// To convert delta time from microseconds into seconds.
-		return static_cast<float>(delta) / static_cast<float>(1000000);
-	}
+// Update previous_time to the current time
+void TimeService::UpdatePreviousTime()
+{
+	previous_time = std::chrono::steady_clock::now();
+}
 
-	// Update previous_time to the current time
-	void updatePreviousTime()
-	{
-		previous_time = std::chrono::steady_clock::now();
-	}
+void TimeService::Initialize()
+{
+	previous_time = std::chrono::steady_clock::now();
+	delta_time = 0;
+}
 
-public:
+void TimeService::Update()
+{
+	UpdateDeltaTime();
+}
 
-	void initialize()
-	{
-		previous_time = std::chrono::steady_clock::now();
-		delta_time = 0;
-	}
-
-	void update()
-	{
-		updateDeltaTime();
-	}
-
-	float getDeltaTime()
-	{
-		return delta_time;
-	}
-};
+float TimeService::GetDeltaTime()
+{
+	return delta_time;
+}

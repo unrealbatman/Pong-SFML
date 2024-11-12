@@ -1,12 +1,4 @@
-class UIService
-{
-public:
-	UIService();
-	~UIService();
-
-private:
-
-};
+#include "UIService.h"
 
 UIService::UIService()
 {

@@ -27,10 +27,10 @@
     <ClCompile Include="Paddle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameManager.cpp">
+    <ClCompile Include="GameService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EventPollingManager.cpp">
+    <ClCompile Include="EventService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TimeService.cpp">
@@ -39,5 +39,28 @@
     <ClCompile Include="UIService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ball.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Boundary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EventService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Paddle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UIService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
