@@ -40,10 +40,19 @@ void Ball::UpdateBallDelayTime(float deltaTime)
     }
 }
 
-void Ball::MoveBall( float deltaTime)
+void Ball::SetUIServiceInBall(UIService service)
+{
+    uiService = service;
+}
+
+void Ball::MoveBall(float deltaTime)
 {   
     UpdateBallDelayTime(deltaTime);
-    pongBallSprite.move(velocity); 
+
+    if (!delayedStart)
+    {
+        pongBallSprite.move(velocity * deltaTime * 100.0f);
+    }
 }
 
 void Ball::OnBallCollision(const RectangleShape& leftPaddle, const RectangleShape& rightPaddle)
@@ -68,11 +77,23 @@ void Ball::OnBallCollision(const RectangleShape& leftPaddle, const RectangleShap
         velocity.x = -velocity.x;  // Reverse horizontal direction
     }
 
-
-    if (ballBounds.left <= 0 || ballBounds.left + ballBounds.width >= 1280) // Check for out-of-bounds (left or right)
+    // Check for out-of-bounds on the left or right boundary
+    if (ballBounds.left <= 0)
     {
+        uiService.IncrementRightScore();
         ResetBall();
     }
+    else if (ballBounds.left + ballBounds.width >= 1280)
+    {
+        uiService.IncrementLeftScore();
+        ResetBall();
+    }
+}
+
+void Ball::BallUpdate(const RectangleShape& leftPaddle, const RectangleShape& rightPaddle, float deltaTime)
+{
+    MoveBall(deltaTime);
+    OnBallCollision(leftPaddle, rightPaddle);
 }
 
 void Ball::DrawBall(RenderWindow& window)

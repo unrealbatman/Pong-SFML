@@ -4,6 +4,7 @@
 GameService::GameService()
 {
 	timeService.Initialize();
+	ball.SetUIServiceInBall(uiService);
 }
 
 void GameService::PlayGame(RenderWindow& window)
@@ -16,8 +17,7 @@ void GameService::GameUpdate()
 {
 	timeService.Update();
 	paddle.MovePaddles();
-	ball.MoveBall(timeService.GetDeltaTime());
-	ball.OnBallCollision(paddle.GetLeftPaddleSprite(), paddle.GetRightPaddleSprite());
+	ball.BallUpdate(paddle.GetLeftPaddleSprite(), paddle.GetRightPaddleSprite(), timeService.GetDeltaTime());
 }
 
 void GameService::DrawGameObject(RenderWindow& window)
@@ -25,4 +25,5 @@ void GameService::DrawGameObject(RenderWindow& window)
 	boundary.DrawBoundary(window);
 	ball.DrawBall(window);
 	paddle.DrawPaddle(window);
+	uiService.DrawUI(window);
 }

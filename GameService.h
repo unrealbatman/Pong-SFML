@@ -3,6 +3,7 @@
 #include "Ball.h"
 #include "Paddle.h"
 #include "TimeService.h"
+#include "UIService.h"
 
 class GameService
 {
@@ -11,6 +12,7 @@ private:
 	Ball ball;
 	Paddle paddle;
 	TimeService timeService;
+	UIService uiService;
 
 public:
 	GameService();
