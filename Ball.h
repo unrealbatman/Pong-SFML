@@ -6,34 +6,60 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "UIService.h"
+#include "Paddle.h";
+#include "TimeService.h"
 using namespace sf;
+
+enum class BallState
+{
+    Idle, 
+    Moving
+};
 
 class Ball
 {
 private:
-    Texture pongBallTexture;
-    Sprite pongBallSprite;
-    UIService uiService;
+    Texture pong_ball_texture;
+    Sprite pong_ball_sprite;
+    UIService ui_service;
+
+    string sprite_path = "Assets/Sprites/Ball.png";
+
+    const float scale_x = 0.2f;
+    const float scale_y = 0.2f;
+
+    const float position_x = 615.0f;
+    const float position_y = 335.0f;
 
     Vector2f velocity;   // Velocity vector for ball movement
-    float ballSpeed = 5.0f;
-    float delayDuration = 2.0f;
-    bool delayedStart = true; // TODO: What is this bool being used for? Why are we not using Enums for this (BallState)?
-    float elapsedDelayTime = 0.0f;
+    const float ball_speed = 5.0f;
+    const float speed_multiplier = 100.0f;
 
-    void CreatePongBall();
-    void ResetBall();
-    void UpdateBallDelayTime(float deltaTime);
+    float delay_duration = 2.0f;
+    BallState current_state = BallState::Idle; // Initialize the ball's state
+    float elapsed_delay_time = 0.0f;
+
+    const float top_boundary = 20.0f;
+    const float bottom_boundary = 700.0f;
+    const float left_boundary = 0.0f;
+    const float right_boundary = 1280.0f;
+
+    void loadTexture();
+    void initializeVariables();
+    void reset();
+    void updateDelayTime(float deltaTime);
 
 public:
 
-    Ball();
+    Ball(UIService service);
 
-    void SetUIServiceInBall(UIService service); // TODO: Not needed, pass the dependencies through a constructor
+    void move(TimeService timeService);
 
-    void MoveBall(float deltaTime);
-    void OnBallCollision(const RectangleShape& leftPaddle, const RectangleShape& rightPaddle);
-
-    void BallUpdate(const RectangleShape& leftPaddle, const RectangleShape& rightPaddle, float deltaTime);
-    void DrawBall(RenderWindow& window);
+    void handleBoudaryCollision();
+    void handlePaddleCollision(Paddle player1, Paddle player2);
+    void handleOutofBoundCollision();
+    
+    void onCollision(Paddle player1, Paddle player2);
+    void update(Paddle player1, Paddle player2, TimeService timeService);
+    void render(RenderWindow& window);
 };

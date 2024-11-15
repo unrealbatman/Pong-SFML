@@ -1,37 +1,44 @@
 #pragma once
 #include "Ball.h"
 
-Ball::Ball()
+Ball::Ball(UIService service)
 {
-    CreatePongBall(); // TODO: function needs to be renamed -> loadTexture(); initializeVariabls(); 
+    ui_service = service;
+
+    loadTexture();
+    initializeVariables();
 }
 
-void Ball::CreatePongBall()
+void Ball::loadTexture()
 {
-    pongBallTexture.loadFromFile("Assets/Sprites/Ball.png"); // TODO: Magic string
-    pongBallSprite.setTexture(pongBallTexture);
-    pongBallSprite.setScale(0.2f, 0.2f); // TODO: Magic Numbers
-    pongBallSprite.setPosition(615, 335); // TODO: Magic Numbers
-
-    velocity = Vector2f(ballSpeed, ballSpeed);     // Initial velocity in a random direction
+    pong_ball_texture.loadFromFile(sprite_path);
 }
 
-void Ball::ResetBall() // TODO: Simply call it reset(). It is already inside the Ball class so everyone will know what is being reset, no need to mention in the name.
+void Ball::initializeVariables()
+{
+    pong_ball_sprite.setTexture(pong_ball_texture);
+    pong_ball_sprite.setScale(scale_x, scale_y);
+    pong_ball_sprite.setPosition(position_x, position_y);
+
+    velocity = Vector2f(ball_speed, ball_speed);     // Initial velocity in a random direction
+}
+
+void Ball::reset()
 { 
-    pongBallSprite.setPosition(615, 335); // TODO: Magic Numbers
-    velocity = Vector2f(ballSpeed, ballSpeed);
-    delayedStart = true;         
-    elapsedDelayTime = 0.0f;  
+    pong_ball_sprite.setPosition(position_x, position_y);
+    velocity = Vector2f(ball_speed, ball_speed);
+    current_state = BallState::Idle;         
+    elapsed_delay_time = 0.0f;  
 }
 
-void Ball::UpdateBallDelayTime(float deltaTime)
+void Ball::updateDelayTime(float deltaTime)
 {
-    if (delayedStart)
+    if (current_state == BallState::Idle)
     {
-        elapsedDelayTime += deltaTime;
-        if (elapsedDelayTime >= delayDuration)
+        elapsed_delay_time += deltaTime;
+        if (elapsed_delay_time >= delay_duration)
         {
-            delayedStart = false;
+            current_state = BallState::Moving;
         }
         else
         {
@@ -40,65 +47,77 @@ void Ball::UpdateBallDelayTime(float deltaTime)
     }
 }
 
-void Ball::SetUIServiceInBall(UIService service)
-{
-    uiService = service;
-}
-
-void Ball::MoveBall(float deltaTime)
+void Ball::move(TimeService timeService)
 {   
-    UpdateBallDelayTime(deltaTime);
+    updateDelayTime(timeService.GetDeltaTime());
 
-    if (!delayedStart) // TODO: Need to change this bool into enum states. Readability can not be compromised.
+    if (current_state == BallState::Moving)
     {
-        pongBallSprite.move(velocity * deltaTime * 100.0f); // TODO: Magic Numbers
+        pong_ball_sprite.move(velocity * timeService.GetDeltaTime() * speed_multiplier);
     }
 }
 
-// TODO: Need helper functions inside this collision method. Need to segregate logic and follow SRP
-void Ball::OnBallCollision(const RectangleShape& leftPaddle, const RectangleShape& rightPaddle)
+void Ball::handleBoudaryCollision()
 {
-    // Get ball bounds
-    FloatRect ballBounds = pongBallSprite.getGlobalBounds();
-    FloatRect leftPaddleBounds = leftPaddle.getGlobalBounds();
-    FloatRect rightPaddleBounds = rightPaddle.getGlobalBounds();
+    FloatRect ball_bounds = pong_ball_sprite.getGlobalBounds();
 
-    // TODO: Magic Numbers
-    if (ballBounds.top <= 20 || ballBounds.top + ballBounds.height >= 700) // Check for collision with top and bottom boundaries (20-pixel boundaries)
+    if (ball_bounds.top <= top_boundary || ball_bounds.top + ball_bounds.height >= bottom_boundary)
     {
         velocity.y = -velocity.y;  // Reverse vertical direction
     }
+}
 
-    if (ballBounds.intersects(leftPaddleBounds) && velocity.x < 0)
+void Ball::handlePaddleCollision(Paddle player1, Paddle player2)
+{
+    const RectangleShape& player1Paddle = player1.GetLeftPaddleSprite();
+    const RectangleShape& player2Paddle = player2.GetRightPaddleSprite();
+
+    FloatRect ball_bounds = pong_ball_sprite.getGlobalBounds();
+    FloatRect Player1PaddleBounds = player1Paddle.getGlobalBounds();
+    FloatRect player2PaddleBounds = player2Paddle.getGlobalBounds();
+
+    if (ball_bounds.intersects(Player1PaddleBounds) && velocity.x < 0)
     {
         velocity.x = -velocity.x;  // Reverse horizontal direction
     }
 
-    if (ballBounds.intersects(rightPaddleBounds) && velocity.x > 0)
+    if (ball_bounds.intersects(player2PaddleBounds) && velocity.x > 0)
     {
         velocity.x = -velocity.x;  // Reverse horizontal direction
     }
+}
+
+void Ball::handleOutofBoundCollision()
+{
+    FloatRect ball_bounds = pong_ball_sprite.getGlobalBounds();
 
     // Check for out-of-bounds on the left or right boundary
-    if (ballBounds.left <= 0)
+    if (ball_bounds.left <= left_boundary)
     {
-        uiService.IncrementRightScore();
-        ResetBall();
+        ui_service.IncrementRightScore();
+        reset();
     }
-    else if (ballBounds.left + ballBounds.width >= 1280) // TODO: Magic Numbers
+    else if (ball_bounds.left + ball_bounds.width >= right_boundary)
     {
-        uiService.IncrementLeftScore();
-        ResetBall();
+        ui_service.IncrementLeftScore();
+        reset();
     }
 }
 
-void Ball::BallUpdate(const RectangleShape& leftPaddle, const RectangleShape& rightPaddle, float deltaTime)
+void Ball::onCollision(Paddle player1, Paddle player2)
 {
-    MoveBall(deltaTime);
-    OnBallCollision(leftPaddle, rightPaddle);
+    handleBoudaryCollision();
+    handlePaddleCollision(player1, player2);
+    handleOutofBoundCollision();
 }
 
-void Ball::DrawBall(RenderWindow& window)
+void Ball::update(Paddle player1, Paddle player2, TimeService timeService)
 {
-	window.draw(pongBallSprite);
+    move(timeService);
+    onCollision(player1, player2);
+}
+
+void Ball::render(RenderWindow& window)
+{
+	window.draw(pong_ball_sprite);
 }
