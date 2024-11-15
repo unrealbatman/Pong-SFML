@@ -14,7 +14,7 @@
 class GameService
 {
 private:
-	Boundary boundary;
+	Boundary* boundary = new Boundary();
 	Paddle paddle;
 	TimeService timeService; // TODO: Naming convention needs to be changed to time_service for variables. This needs to be done for all variabls in the project.
 	UIService uiService;

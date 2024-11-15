@@ -6,7 +6,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "UIService.h"
-#include "Paddle.h";
+#include "Paddle.h"
 #include "TimeService.h"
 using namespace sf;
 
