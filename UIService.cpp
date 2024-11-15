@@ -3,13 +3,14 @@
 
 UIService::UIService()
 {
-    font.loadFromFile("Assets/Fonts/Aloevera-OVoWO.ttf");
+    font.loadFromFile("Assets/Fonts/Aloevera-OVoWO.ttf"); // TODO: Magic string
     CreateLeftScoreText();
     CreateRightScoreText();
 }
 
 void UIService::CreateLeftScoreText()
 {
+    // TODO: Magic variables.
     leftScoreText.setFont(font);
     leftScoreText.setString("00");
     leftScoreText.setCharacterSize(40);
@@ -19,6 +20,7 @@ void UIService::CreateLeftScoreText()
 
 void UIService::CreateRightScoreText()
 {
+    // TODO: Magic Variables
     rightScoreText.setFont(font);
     rightScoreText.setString("00");
     rightScoreText.setCharacterSize(40);
@@ -34,6 +36,7 @@ string UIService::FormatScore(int score)
 
 void UIService::IncrementLeftScore()
 {
+    // TODO: Remove Debug statements
     cout << "Left Before Incrementing" <<leftScore <<endl;
     leftScore++;
     cout <<"Left After Incrementing" << leftScore << endl;

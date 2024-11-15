@@ -11,7 +11,7 @@ private:
     Text leftScoreText;
     Text rightScoreText;
 
-    int leftScore = 0;
+    int leftScore = 0; // TODO: Should be Player 1 score &* Player 3 score instead of left and right
     int rightScore = 0;
 
     string FormatScore(int score);
@@ -26,5 +26,5 @@ public:
     void IncrementLeftScore();
     void IncrementRightScore();
 
-    void DrawUI(RenderWindow& window);
+    void DrawUI(RenderWindow& window); // TODO: render()
 };

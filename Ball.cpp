@@ -3,22 +3,22 @@
 
 Ball::Ball()
 {
-    CreatePongBall();
+    CreatePongBall(); // TODO: function needs to be renamed -> loadTexture(); initializeVariabls(); 
 }
 
 void Ball::CreatePongBall()
 {
-    pongBallTexture.loadFromFile("Assets/Sprites/Ball.png");
+    pongBallTexture.loadFromFile("Assets/Sprites/Ball.png"); // TODO: Magic string
     pongBallSprite.setTexture(pongBallTexture);
-    pongBallSprite.setScale(0.2f, 0.2f);
-    pongBallSprite.setPosition(615, 335);
+    pongBallSprite.setScale(0.2f, 0.2f); // TODO: Magic Numbers
+    pongBallSprite.setPosition(615, 335); // TODO: Magic Numbers
 
     velocity = Vector2f(ballSpeed, ballSpeed);     // Initial velocity in a random direction
 }
 
-void Ball::ResetBall()
-{
-    pongBallSprite.setPosition(615, 335);
+void Ball::ResetBall() // TODO: Simply call it reset(). It is already inside the Ball class so everyone will know what is being reset, no need to mention in the name.
+{ 
+    pongBallSprite.setPosition(615, 335); // TODO: Magic Numbers
     velocity = Vector2f(ballSpeed, ballSpeed);
     delayedStart = true;         
     elapsedDelayTime = 0.0f;  
@@ -49,12 +49,13 @@ void Ball::MoveBall(float deltaTime)
 {   
     UpdateBallDelayTime(deltaTime);
 
-    if (!delayedStart)
+    if (!delayedStart) // TODO: Need to change this bool into enum states. Readability can not be compromised.
     {
-        pongBallSprite.move(velocity * deltaTime * 100.0f);
+        pongBallSprite.move(velocity * deltaTime * 100.0f); // TODO: Magic Numbers
     }
 }
 
+// TODO: Need helper functions inside this collision method. Need to segregate logic and follow SRP
 void Ball::OnBallCollision(const RectangleShape& leftPaddle, const RectangleShape& rightPaddle)
 {
     // Get ball bounds
@@ -62,6 +63,7 @@ void Ball::OnBallCollision(const RectangleShape& leftPaddle, const RectangleShap
     FloatRect leftPaddleBounds = leftPaddle.getGlobalBounds();
     FloatRect rightPaddleBounds = rightPaddle.getGlobalBounds();
 
+    // TODO: Magic Numbers
     if (ballBounds.top <= 20 || ballBounds.top + ballBounds.height >= 700) // Check for collision with top and bottom boundaries (20-pixel boundaries)
     {
         velocity.y = -velocity.y;  // Reverse vertical direction
@@ -83,7 +85,7 @@ void Ball::OnBallCollision(const RectangleShape& leftPaddle, const RectangleShap
         uiService.IncrementRightScore();
         ResetBall();
     }
-    else if (ballBounds.left + ballBounds.width >= 1280)
+    else if (ballBounds.left + ballBounds.width >= 1280) // TODO: Magic Numbers
     {
         uiService.IncrementLeftScore();
         ResetBall();

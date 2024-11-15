@@ -1,3 +1,5 @@
+// TODO: Magic Numbers and color all over the place!
+
 #include "Boundary.h"
 
 void Boundary::CreateTopBoundary()
