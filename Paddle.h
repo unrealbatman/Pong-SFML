@@ -9,22 +9,23 @@ using namespace sf;
 class Paddle
 {
 private:
-	RectangleShape leftPaddleSprite;
-	RectangleShape rightPaddleSprite;
+	RectangleShape paddle_sprite;
+
+	const float paddle_width = 20.0f;
+	const float paddle_height = 140.0f;
+
 	float paddleSpeed = 0.2f;
 	float topBoundary = 20.0f;
 	float bottomBoundary = 700.0f;
 
-	void CreateLeftPaddle();
-	void CreateRightPaddle();
+	void createPaddle(float position_x, float position_y);
 
 public:
-	Paddle();
+	Paddle(float position_x, float position_y);
 
-	RectangleShape GetLeftPaddleSprite();
-	RectangleShape GetRightPaddleSprite();
+	RectangleShape getPaddleSprite();
 
-	void MovePaddles();
-
-	void DrawPaddle(RenderWindow& window);
+	void movePaddle();
+	void update();
+	void render(RenderWindow& window);
 };

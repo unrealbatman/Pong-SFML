@@ -1,7 +1,4 @@
-// TODO: Need pointer references instead of soft objects
-// TODO: Update and Render function missing
 // TODO: Why is the ball taking care of UI Management? It does not make sense. Ideally the Gameplay Manager should be the one responsible for managing gameplay UI.
-// TODO: Remove "Ball" from each method name
 
 #pragma once
 #include <SFML/Graphics.hpp>
@@ -53,13 +50,13 @@ public:
 
     Ball(UIService service);
 
-    void move(TimeService timeService);
+    void move(TimeService* timeService);
 
     void handleBoudaryCollision();
-    void handlePaddleCollision(Paddle player1, Paddle player2);
+    void handlePaddleCollision(Paddle* player1, Paddle* player2);
     void handleOutofBoundCollision();
     
-    void onCollision(Paddle player1, Paddle player2);
-    void update(Paddle player1, Paddle player2, TimeService timeService);
+    void onCollision(Paddle* player1, Paddle* player2);
+    void update(Paddle* player1, Paddle* player2, TimeService* timeService);
     void render(RenderWindow& window);
 };

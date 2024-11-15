@@ -3,7 +3,7 @@
 
 GameService::GameService()
 {
-	timeService.Initialize();
+	timeService->Initialize();
 }
 
 void GameService::PlayGame(RenderWindow& window)
@@ -14,10 +14,10 @@ void GameService::PlayGame(RenderWindow& window)
 
 void GameService::GameUpdate()
 {
-	timeService.Update();
-	paddle.MovePaddles(); // TODO: paddle.update()
-	// TODO: only references of paddle & timeservice needs to be passed on.
-	ball->update(paddle, paddle, timeService); 
+	timeService->Update();
+	player1->update();
+	player2->update();
+	ball->update(player1, player2, timeService); 
 }
 
 void GameService::DrawGameObject(RenderWindow& window)
@@ -25,6 +25,7 @@ void GameService::DrawGameObject(RenderWindow& window)
 	// TODO: All these function must simply be named render()
 	boundary->render(window);
 	ball->render(window);
-	paddle.DrawPaddle(window);
+	player1->render(window);
+	player2->render(window);
 	uiService.DrawUI(window);
 }

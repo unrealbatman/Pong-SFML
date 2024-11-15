@@ -47,13 +47,13 @@ void Ball::updateDelayTime(float deltaTime)
     }
 }
 
-void Ball::move(TimeService timeService)
+void Ball::move(TimeService* timeService)
 {   
-    updateDelayTime(timeService.GetDeltaTime());
+    updateDelayTime(timeService->GetDeltaTime());
 
     if (current_state == BallState::Moving)
     {
-        pong_ball_sprite.move(velocity * timeService.GetDeltaTime() * speed_multiplier);
+        pong_ball_sprite.move(velocity * timeService->GetDeltaTime() * speed_multiplier);
     }
 }
 
@@ -67,10 +67,10 @@ void Ball::handleBoudaryCollision()
     }
 }
 
-void Ball::handlePaddleCollision(Paddle player1, Paddle player2)
+void Ball::handlePaddleCollision(Paddle* player1, Paddle* player2)
 {
-    const RectangleShape& player1Paddle = player1.GetLeftPaddleSprite();
-    const RectangleShape& player2Paddle = player2.GetRightPaddleSprite();
+    const RectangleShape& player1Paddle = player1->getPaddleSprite();
+    const RectangleShape& player2Paddle = player2->getPaddleSprite();
 
     FloatRect ball_bounds = pong_ball_sprite.getGlobalBounds();
     FloatRect Player1PaddleBounds = player1Paddle.getGlobalBounds();
@@ -104,14 +104,14 @@ void Ball::handleOutofBoundCollision()
     }
 }
 
-void Ball::onCollision(Paddle player1, Paddle player2)
+void Ball::onCollision(Paddle* player1, Paddle* player2)
 {
     handleBoudaryCollision();
     handlePaddleCollision(player1, player2);
     handleOutofBoundCollision();
 }
 
-void Ball::update(Paddle player1, Paddle player2, TimeService timeService)
+void Ball::update(Paddle* player1, Paddle* player2, TimeService* timeService)
 {
     move(timeService);
     onCollision(player1, player2);

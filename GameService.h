@@ -14,9 +14,17 @@
 class GameService
 {
 private:
+	int player1_position_x = 40;
+	int player1_position_y = 300;
+
+	int player2_postion_x = 1210;
+	int player2_postion_y = 300;
+
+
 	Boundary* boundary = new Boundary();
-	Paddle paddle;
-	TimeService timeService; // TODO: Naming convention needs to be changed to time_service for variables. This needs to be done for all variabls in the project.
+	Paddle* player1 = new Paddle(player1_position_x, player1_position_y);
+	Paddle* player2 = new Paddle(player2_postion_x, player2_postion_y);
+	TimeService* timeService = new TimeService(); // TODO: Naming convention needs to be changed to time_service for variables. This needs to be done for all variabls in the project.
 	UIService uiService;
 	Ball* ball = new Ball(uiService);
 

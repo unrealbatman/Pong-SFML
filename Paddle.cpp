@@ -1,58 +1,49 @@
 #include "Paddle.h"
 
-Paddle::Paddle()
+Paddle::Paddle(float position_x, float position_y)
 {
-	CreateLeftPaddle();
-	CreateRightPaddle();
+	createPaddle(position_x, position_y);
 }
 
-void Paddle::CreateLeftPaddle()
+void Paddle::createPaddle(float position_x, float position_y)
 {
-	leftPaddleSprite.setSize(Vector2f(20, 140)); // TODO: Magic Numbers
-	leftPaddleSprite.setPosition(40, 300); // TODO: Magic Numbers
+	paddle_sprite.setSize(Vector2f(paddle_width, paddle_height));
+	paddle_sprite.setPosition(position_x, position_y);
 }
 
-void Paddle::CreateRightPaddle()
+RectangleShape Paddle::getPaddleSprite()
 {
-	rightPaddleSprite.setSize(Vector2f(20, 140)); // TODO: Magic Numbers
-	rightPaddleSprite.setPosition(1210, 300); // TODO: Magic Numbers
+	return paddle_sprite;
 }
-
-RectangleShape Paddle::GetLeftPaddleSprite()
-{
-	return leftPaddleSprite;
-}
-
-RectangleShape Paddle::GetRightPaddleSprite()
-{
-	return rightPaddleSprite;
-}
-
 
 // TODO: All the inputs must have been fetched through the Event Manager rather then directly fetching here!
-void Paddle::MovePaddles()
+void Paddle::movePaddle()
 {
-	if (Keyboard::isKeyPressed(Keyboard::W) && leftPaddleSprite.getPosition().y > topBoundary)
+	if (Keyboard::isKeyPressed(Keyboard::W) && paddle_sprite.getPosition().y > topBoundary)
 	{
-		leftPaddleSprite.move(0, -paddleSpeed);
+		paddle_sprite.move(0, -paddleSpeed);
 	}
-	if (Keyboard::isKeyPressed(Keyboard::S) && leftPaddleSprite.getPosition().y + leftPaddleSprite.getSize().y < bottomBoundary)
+	if (Keyboard::isKeyPressed(Keyboard::S) && paddle_sprite.getPosition().y + paddle_sprite.getSize().y < bottomBoundary)
 	{
-		leftPaddleSprite.move(0, paddleSpeed);
+		paddle_sprite.move(0, paddleSpeed);
 	}
 
-	if (Keyboard::isKeyPressed(Keyboard::Up) && rightPaddleSprite.getPosition().y > topBoundary)
+	/*if (Keyboard::isKeyPressed(Keyboard::Up) && rightPaddleSprite.getPosition().y > topBoundary)
 	{
 		rightPaddleSprite.move(0, -paddleSpeed);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Down) && rightPaddleSprite.getPosition().y + rightPaddleSprite.getSize().y < bottomBoundary)
 	{
 		rightPaddleSprite.move(0, paddleSpeed);
-	}
+	}*/
 }
 
-void Paddle::DrawPaddle(RenderWindow& window)
+void Paddle::update() 
 {
-	window.draw(leftPaddleSprite);
-	window.draw(rightPaddleSprite);
+	movePaddle();
+}
+
+void Paddle::render(RenderWindow& window)
+{
+	window.draw(paddle_sprite);
 }
