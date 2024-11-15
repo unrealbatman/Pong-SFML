@@ -1,5 +1,3 @@
-// TODO: Fix the line spacings.
-
 #pragma once
 #include <chrono>
 using namespace std;
@@ -11,17 +9,12 @@ private:
 	float delta_time;
 
 	void UpdateDeltaTime();
-
 	float CalculateDeltaTime();
-
-	// Update previous_time to the current time
-	void UpdatePreviousTime();
+	void UpdatePreviousTime(); // Update previous_time to the current time
 
 public:
 
 	void Initialize();
-
 	void Update();
-
 	float GetDeltaTime();
 };
