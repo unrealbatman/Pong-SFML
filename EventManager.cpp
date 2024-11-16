@@ -8,7 +8,7 @@ void EventManager::EventPolling(RenderWindow& window)
     Event event;
     while (window.pollEvent(event))
     {
-        if (event.type == sf::Event::Closed)
+        if (event.type == Event::Closed)
             window.close();
 
         // Check for Escape key to close the game
@@ -25,20 +25,20 @@ bool EventManager::IsKeyPressed(Keyboard::Key key)
 
 bool EventManager::IsWPressed()
 {
-    return Keyboard::isKeyPressed(Keyboard::W);
+    return IsKeyPressed(Keyboard::W);
 }
 
 bool EventManager::IsSPressed()
 {
-    return Keyboard::isKeyPressed(Keyboard::S);
+    return IsKeyPressed(Keyboard::S);
 }
 
 bool EventManager::IsUpArrowPressed()
 {
-    return Keyboard::isKeyPressed(Keyboard::Up);
+    return IsKeyPressed(Keyboard::Up);
 }
 
 bool EventManager::IsDownArrowPressed()
 {
-    return Keyboard::isKeyPressed(Keyboard::Down);
+    return IsKeyPressed(Keyboard::Down);
 }
