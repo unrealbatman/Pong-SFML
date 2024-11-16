@@ -133,25 +133,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Ball.cpp" />
-    <ClCompile Include="Boundary.cpp" />
-    <ClCompile Include="EventManager.cpp" />
-    <ClCompile Include="GameplayManager.cpp" />
-    <ClCompile Include="GameWindowManager.cpp" />
-    <ClCompile Include="Paddle.cpp" />
+    <ClCompile Include="Source\Gameplay\Ball\Ball.cpp" />
+    <ClCompile Include="Source\Gameplay\Boundary\Boundary.cpp" />
+    <ClCompile Include="Source\Events\EventManager.cpp" />
+    <ClCompile Include="Source\Gameplay\GameplayManager.cpp" />
+    <ClCompile Include="Source\Core\GameWindowManager.cpp" />
+    <ClCompile Include="Source\Gameplay\Paddle\Paddle.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="TimeService.cpp" />
-    <ClCompile Include="UIService.cpp" />
+    <ClCompile Include="Source\Utility\TimeService.cpp" />
+    <ClCompile Include="Source\UI\UIService.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ball.h" />
-    <ClInclude Include="Boundary.h" />
-    <ClInclude Include="EventManager.h" />
-    <ClInclude Include="GameplayManager.h" />
-    <ClInclude Include="GameWindowManager.h" />
-    <ClInclude Include="Paddle.h" />
-    <ClInclude Include="TimeService.h" />
-    <ClInclude Include="UIService.h" />
+    <ClInclude Include="Header\Gameplay\Ball\Ball.h" />
+    <ClInclude Include="Header\Gameplay\Boundary\Boundary.h" />
+    <ClInclude Include="Header\Events\EventManager.h" />
+    <ClInclude Include="Header\Gameplay\GameplayManager.h" />
+    <ClInclude Include="Header\Core\GameWindowManager.h" />
+    <ClInclude Include="Header\Gameplay\Paddle\Paddle.h" />
+    <ClInclude Include="Header\Utility\TimeService.h" />
+    <ClInclude Include="Header\UI\UIService.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Paddle.h"
-#include "TimeService.h"
+#include "../../Header/Gameplay/Paddle/Paddle.h"
+#include "../../Header/Utility/TimeService.h"
 using namespace sf;
 
 enum class BallState

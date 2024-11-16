@@ -2,7 +2,7 @@
 // TODO: There are no Namespaces being used
 
 #include <SFML/Graphics.hpp>
-#include "GameWindowManager.h"
+#include "../../Header/Core/GameWindowManager.h"
 using namespace sf;
 
 int main()

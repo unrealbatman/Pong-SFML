@@ -1,5 +1,5 @@
 #pragma once
-#include "GameplayManager.h"
+#include "../../Header/Gameplay/GameplayManager.h"
 
 GameplayManager::GameplayManager(EventManager* manager)
 {

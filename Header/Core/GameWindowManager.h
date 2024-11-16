@@ -1,8 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "EventManager.h"
-#include "GameplayManager.h"
+#include "../../Header/Events/EventManager.h"
+#include "../../Header/Gameplay/GameplayManager.h"
 using namespace sf;
+using namespace std;
 
 class GameWindowManager 
 {

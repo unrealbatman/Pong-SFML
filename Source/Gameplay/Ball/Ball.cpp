@@ -1,5 +1,5 @@
 #pragma once
-#include "Ball.h"
+#include "../../Header/Gameplay/Ball/Ball.h"
 
 Ball::Ball()
 {

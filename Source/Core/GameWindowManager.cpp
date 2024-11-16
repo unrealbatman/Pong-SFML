@@ -1,4 +1,4 @@
-#include "GameWindowManager.h"
+#include "../../Header/Core/GameWindowManager.h"
 
 void GameWindowManager::createGameWindow(int width, int height, const string& title)
 {

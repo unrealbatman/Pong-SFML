@@ -1,4 +1,4 @@
-#include "Paddle.h"
+#include "../../Header/Gameplay/Paddle/Paddle.h"
 
 Paddle::Paddle(float position_x, float position_y)
 {

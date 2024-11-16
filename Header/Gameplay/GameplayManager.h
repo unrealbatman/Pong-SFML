@@ -1,10 +1,10 @@
 #pragma once
-#include "Boundary.h"
-#include "Ball.h"
-#include "Paddle.h"
-#include "TimeService.h"
-#include "UIService.h"
-#include "EventManager.h"
+#include "../../Header/Gameplay/Boundary/Boundary.h"
+#include "../../Header/Gameplay/Ball/Ball.h"
+#include "../../Header/Gameplay/Paddle/Paddle.h"
+#include "../../Header/Utility/TimeService.h"
+#include "../../Header/UI/UIService.h"
+#include "../../Header/Events/EventManager.h"
 
 class GameplayManager
 {
