@@ -1,8 +1,5 @@
-// TODO: Why is the ball taking care of UI Management? It does not make sense. Ideally the Gameplay Manager should be the one responsible for managing gameplay UI.
-
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "UIService.h"
 #include "Paddle.h"
 #include "TimeService.h"
 using namespace sf;
@@ -18,7 +15,6 @@ class Ball
 private:
     Texture pong_ball_texture;
     Sprite pong_ball_sprite;
-    UIService* ui_service;
 
     string texture_path = "Assets/Sprites/Ball.png";
 
@@ -41,6 +37,9 @@ private:
     const float left_boundary = 0.0f;
     const float right_boundary = 1280.0f;
 
+    bool had_left_collison;
+    bool had_right_collison;
+
     void loadTexture();
     void initializeVariables();
     void reset();
@@ -48,7 +47,13 @@ private:
 
 public:
 
-    Ball(UIService* service);
+    Ball();
+
+    bool isLeftCollisionOccurred();
+    void updateLeftCollisionState(bool value);
+
+    bool isRightCollisionOccurred();
+    void updateRightCollisionState(bool value);
 
     void move(TimeService* timeService);
 

@@ -1,10 +1,8 @@
 #pragma once
 #include "Ball.h"
 
-Ball::Ball(UIService* service)
+Ball::Ball()
 {
-    ui_service = service;
-
     loadTexture();
     initializeVariables();
 }
@@ -87,6 +85,26 @@ void Ball::handlePaddleCollision(Paddle* player1, Paddle* player2)
     }
 }
 
+bool Ball::isLeftCollisionOccurred()
+{
+    return had_left_collison;
+}
+
+void Ball::updateLeftCollisionState(bool value)
+{
+    had_left_collison = value;
+}
+
+bool Ball::isRightCollisionOccurred()
+{
+    return had_right_collison;
+}
+
+void Ball::updateRightCollisionState(bool value)
+{
+    had_right_collison = value;
+}
+
 void Ball::handleOutofBoundCollision()
 {
     FloatRect ball_bounds = pong_ball_sprite.getGlobalBounds();
@@ -94,12 +112,12 @@ void Ball::handleOutofBoundCollision()
     // Check for out-of-bounds on the left or right boundary
     if (ball_bounds.left <= left_boundary)
     {
-        ui_service->incrementPlayer2Score();
+        updateLeftCollisionState(true);
         reset();
     }
     else if (ball_bounds.left + ball_bounds.width >= right_boundary)
     {
-        ui_service->incrementPlayer1Score();
+        updateRightCollisionState(true);
         reset();
     }
 }
