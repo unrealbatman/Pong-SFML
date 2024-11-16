@@ -1,9 +1,10 @@
 #pragma once
 #include "GameService.h"
 
-GameService::GameService()
+GameService::GameService(EventManager* manager)
 {
-	timeService->Initialize();
+	time_service->Initialize();
+	event_manager = manager;
 }
 
 void GameService::PlayGame(RenderWindow& window)
@@ -14,10 +15,10 @@ void GameService::PlayGame(RenderWindow& window)
 
 void GameService::GameUpdate()
 {
-	timeService->Update();
-	player1->update();
-	player2->update();
-	ball->update(player1, player2, timeService); 
+	time_service->Update();
+	player1->update(event_manager->IsWPressed(), event_manager->IsSPressed());
+	player2->update(event_manager->IsUpArrowPressed(), event_manager->IsDownArrowPressed());
+	ball->update(player1, player2, time_service); 
 }
 
 void GameService::DrawGameObject(RenderWindow& window)

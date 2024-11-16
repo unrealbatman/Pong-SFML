@@ -10,26 +10,28 @@
 #include "Paddle.h"
 #include "TimeService.h"
 #include "UIService.h"
+#include "EventManager.h"
 
 class GameService
 {
 private:
-	int player1_position_x = 40;
-	int player1_position_y = 300;
+	float player1_position_x = 40.0f;
+	float player1_position_y = 300.0f;
 
-	int player2_postion_x = 1210;
-	int player2_postion_y = 300;
+	float player2_postion_x = 1210.0f;
+	float player2_postion_y = 300.0f;
 
 
 	Boundary* boundary = new Boundary();
 	Paddle* player1 = new Paddle(player1_position_x, player1_position_y);
 	Paddle* player2 = new Paddle(player2_postion_x, player2_postion_y);
-	TimeService* timeService = new TimeService(); // TODO: Naming convention needs to be changed to time_service for variables. This needs to be done for all variabls in the project.
+	TimeService* time_service = new TimeService(); // TODO: Naming convention needs to be changed to time_service for variables. This needs to be done for all variabls in the project.
 	UIService uiService;
+	EventManager* event_manager;
 	Ball* ball = new Ball(uiService);
 
 public:
-	GameService();
+	GameService(EventManager* manager);
 
 	void PlayGame(RenderWindow& window);
 

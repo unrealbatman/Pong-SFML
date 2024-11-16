@@ -135,7 +135,7 @@
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Boundary.cpp" />
-    <ClCompile Include="EventService.cpp" />
+    <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="GameService.cpp" />
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="Pong-SFML.cpp" />
@@ -145,7 +145,7 @@
   <ItemGroup>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Boundary.h" />
-    <ClInclude Include="EventService.h" />
+    <ClInclude Include="EventManager.h" />
     <ClInclude Include="GameService.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="TimeService.h" />

@@ -30,7 +30,7 @@
     <ClCompile Include="GameService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EventService.cpp">
+    <ClCompile Include="EventManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TimeService.cpp">
@@ -47,7 +47,7 @@
     <ClInclude Include="Boundary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EventService.h">
+    <ClInclude Include="EventManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameService.h">

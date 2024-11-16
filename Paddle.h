@@ -25,7 +25,7 @@ public:
 
 	RectangleShape getPaddleSprite();
 
-	void movePaddle();
-	void update();
+	void movePaddle(bool move_up_key_pressed, bool move_down_key_pressed);
+	void update(bool move_up_key_pressed, bool move_down_key_pressed);
 	void render(RenderWindow& window);
 };

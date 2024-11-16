@@ -9,20 +9,20 @@
 
 #include <SFML/Graphics.hpp>
 #include "GameService.h"
-#include "EventService.h"
+#include "EventManager.h"
 using namespace sf;
 
 int main()
 {
     RenderWindow window;
-    EventService* eventService = new EventService();
-    GameService* gameService = new GameService();
+    EventManager* event_manager = new EventManager();
+    GameService* gameService = new GameService(event_manager);
 
     window.create(VideoMode(1280, 720), "SFML-Pong!");
 
     while (window.isOpen())
     {
-        eventService->EventPolling(window);
+        event_manager->EventPolling(window);
 
         window.clear();
         gameService->PlayGame(window);
