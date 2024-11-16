@@ -1,30 +1,19 @@
 // TODO: There is no Folder Structure
 // TODO: There are no Namespaces being used
-// TODO: Need to create a GameWindowManager
-// TODO: Game Window m ust be managed inside GameWindowManager class
-// TODO: There is no Initialization Method in the main game loop
 
 #include <SFML/Graphics.hpp>
-#include "GameplayManager.h"
-#include "EventManager.h"
+#include "GameWindowManager.h"
 using namespace sf;
 
 int main()
 {
-    RenderWindow window;
-    EventManager* event_manager = new EventManager();
-    GameplayManager* gameplay_manager = new GameplayManager(event_manager);
+    int screen_width = 1280;
+    int screen_length = 720;
+    string game_title = "SFML-Pong!";
 
-    window.create(VideoMode(1280, 720), "SFML-Pong!");
+    GameWindowManager * game_window_manager = new GameWindowManager();
+    game_window_manager->initialize(screen_width, screen_length, game_title);
+    game_window_manager->gameLoop();
 
-    while (window.isOpen())
-    {
-        event_manager->eventPolling(window);
-
-        window.clear();
-        gameplay_manager->update();
-        gameplay_manager->render(window);
-        window.display();
-    }
     return 0;
 }

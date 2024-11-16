@@ -137,6 +137,7 @@
     <ClCompile Include="Boundary.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="GameplayManager.cpp" />
+    <ClCompile Include="GameWindowManager.cpp" />
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="TimeService.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="Boundary.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="GameplayManager.h" />
+    <ClInclude Include="GameWindowManager.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="TimeService.h" />
     <ClInclude Include="UIService.h" />

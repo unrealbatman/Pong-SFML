@@ -1,5 +1,4 @@
 #include "UIService.h"
-#include <iostream>
 
 UIService::UIService()
 {
