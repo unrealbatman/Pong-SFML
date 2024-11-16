@@ -23,7 +23,7 @@ private:
     float right_score_position_x = 660.0f;
     float right_score_position_y = 30.0f;
     
-    int player1_score = 0; // TODO: Should be Player 1 score &* Player 3 score instead of left and right
+    int player1_score = 0;
     int player2_score = 0;
 
     string formatScore(int score);
@@ -40,5 +40,5 @@ public:
     void incrementPlayer2Score();
 
     void update();
-    void render(RenderWindow& window); // TODO: render()
+    void render(RenderWindow& window);
 };

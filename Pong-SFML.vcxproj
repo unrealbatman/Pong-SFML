@@ -136,9 +136,9 @@
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Boundary.cpp" />
     <ClCompile Include="EventManager.cpp" />
-    <ClCompile Include="GameService.cpp" />
+    <ClCompile Include="GameplayManager.cpp" />
     <ClCompile Include="Paddle.cpp" />
-    <ClCompile Include="Pong-SFML.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="TimeService.cpp" />
     <ClCompile Include="UIService.cpp" />
   </ItemGroup>
@@ -146,7 +146,7 @@
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Boundary.h" />
     <ClInclude Include="EventManager.h" />
-    <ClInclude Include="GameService.h" />
+    <ClInclude Include="GameplayManager.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="TimeService.h" />
     <ClInclude Include="UIService.h" />

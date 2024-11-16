@@ -16,7 +16,6 @@ RectangleShape Paddle::getPaddleSprite()
 	return paddle_sprite;
 }
 
-// TODO: All the inputs must have been fetched through the Event Manager rather then directly fetching here!
 void Paddle::movePaddle(bool move_up_key_pressed, bool move_down_key_pressed)
 {
 	if (move_up_key_pressed && paddle_sprite.getPosition().y > topBoundary)

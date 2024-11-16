@@ -1,30 +1,23 @@
 #pragma once
-#include "GameService.h"
+#include "GameplayManager.h"
 
-GameService::GameService(EventManager* manager)
+GameplayManager::GameplayManager(EventManager* manager)
 {
-	time_service->Initialize();
+	time_service->initialize();
 	event_manager = manager;
 }
 
-void GameService::PlayGame(RenderWindow& window)
+void GameplayManager::update()
 {
-	GameUpdate();
-	DrawGameObject(window);
-}
-
-void GameService::GameUpdate()
-{
-	time_service->Update();
+	time_service->update();
 	player1->update(event_manager->isWPressed(), event_manager->isSPressed());
 	player2->update(event_manager->isUpArrowPressed(), event_manager->isDownArrowPressed());
 	ball->update(player1, player2, time_service); 
 	ui_service->update();
 }
 
-void GameService::DrawGameObject(RenderWindow& window)
+void GameplayManager::render(RenderWindow& window)
 {
-	// TODO: All these function must simply be named render()
 	boundary->render(window);
 	ball->render(window);
 	player1->render(window);

@@ -49,11 +49,11 @@ void Ball::updateDelayTime(float deltaTime)
 
 void Ball::move(TimeService* timeService)
 {   
-    updateDelayTime(timeService->GetDeltaTime());
+    updateDelayTime(timeService->getDeltaTime());
 
     if (current_state == BallState::Moving)
     {
-        pong_ball_sprite.move(velocity * timeService->GetDeltaTime() * speed_multiplier);
+        pong_ball_sprite.move(velocity * timeService->getDeltaTime() * speed_multiplier);
     }
 }
 
