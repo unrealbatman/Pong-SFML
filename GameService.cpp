@@ -16,9 +16,10 @@ void GameService::PlayGame(RenderWindow& window)
 void GameService::GameUpdate()
 {
 	time_service->Update();
-	player1->update(event_manager->IsWPressed(), event_manager->IsSPressed());
-	player2->update(event_manager->IsUpArrowPressed(), event_manager->IsDownArrowPressed());
+	player1->update(event_manager->isWPressed(), event_manager->isSPressed());
+	player2->update(event_manager->isUpArrowPressed(), event_manager->isDownArrowPressed());
 	ball->update(player1, player2, time_service); 
+	ui_service->update();
 }
 
 void GameService::DrawGameObject(RenderWindow& window)
@@ -28,5 +29,5 @@ void GameService::DrawGameObject(RenderWindow& window)
 	ball->render(window);
 	player1->render(window);
 	player2->render(window);
-	uiService.DrawUI(window);
+	ui_service->render(window);
 }

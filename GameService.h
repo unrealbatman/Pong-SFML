@@ -25,10 +25,10 @@ private:
 	Boundary* boundary = new Boundary();
 	Paddle* player1 = new Paddle(player1_position_x, player1_position_y);
 	Paddle* player2 = new Paddle(player2_postion_x, player2_postion_y);
-	TimeService* time_service = new TimeService(); // TODO: Naming convention needs to be changed to time_service for variables. This needs to be done for all variabls in the project.
-	UIService uiService;
+	TimeService* time_service = new TimeService();
+	UIService* ui_service = new UIService;
 	EventManager* event_manager;
-	Ball* ball = new Ball(uiService);
+	Ball* ball = new Ball(ui_service);
 
 public:
 	GameService(EventManager* manager);

@@ -18,9 +18,9 @@ class Ball
 private:
     Texture pong_ball_texture;
     Sprite pong_ball_sprite;
-    UIService ui_service;
+    UIService* ui_service;
 
-    string sprite_path = "Assets/Sprites/Ball.png";
+    string texture_path = "Assets/Sprites/Ball.png";
 
     const float scale_x = 0.2f;
     const float scale_y = 0.2f;
@@ -48,7 +48,7 @@ private:
 
 public:
 
-    Ball(UIService service);
+    Ball(UIService* service);
 
     void move(TimeService* timeService);
 

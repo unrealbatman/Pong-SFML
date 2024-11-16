@@ -3,56 +3,58 @@
 
 UIService::UIService()
 {
-    font.loadFromFile("Assets/Fonts/Aloevera-OVoWO.ttf"); // TODO: Magic string
-    CreateLeftScoreText();
-    CreateRightScoreText();
+    loadFontTexture();
+    createLeftScoreText();
+    createRightScoreText();
 }
 
-void UIService::CreateLeftScoreText()
+void UIService::loadFontTexture()
 {
-    // TODO: Magic variables.
-    leftScoreText.setFont(font);
-    leftScoreText.setString("00");
-    leftScoreText.setCharacterSize(40);
-    leftScoreText.setFillColor(Color::White);
-    leftScoreText.setPosition(580, 30);
+    font.loadFromFile(texture_path);
 }
 
-void UIService::CreateRightScoreText()
+void UIService::createLeftScoreText()
 {
-    // TODO: Magic Variables
-    rightScoreText.setFont(font);
-    rightScoreText.setString("00");
-    rightScoreText.setCharacterSize(40);
-    rightScoreText.setFillColor(Color::White);
-    rightScoreText.setPosition(660, 30);
+    left_score_text.setFont(font);
+    left_score_text.setString(initial_string);
+    left_score_text.setCharacterSize(font_size);
+    left_score_text.setFillColor(font_color);
+    left_score_text.setPosition(left_score_postion_x, left_score_postion_y);
+}
+
+void UIService::createRightScoreText()
+{
+    right_score_text.setFont(font);
+    right_score_text.setString(initial_string);
+    right_score_text.setCharacterSize(font_size);
+    right_score_text.setFillColor(font_color);
+    right_score_text.setPosition(right_score_position_x, right_score_position_y);
 }
 
 
-string UIService::FormatScore(int score)
+string UIService::formatScore(int score)
 {
     return (score < 10 ? "0" : "") + to_string(score); // Ensure scores display with two digits (e.g., 00, 01, 10)
 }
 
-void UIService::IncrementLeftScore()
+void UIService::incrementPlayer1Score()
 {
-    // TODO: Remove Debug statements
-    cout << "Left Before Incrementing" <<leftScore <<endl;
-    leftScore++;
-    cout <<"Left After Incrementing" << leftScore << endl;
-    leftScoreText.setString(FormatScore(leftScore));
+    player1_score++;
 }
 
-void UIService::IncrementRightScore()
+void UIService::incrementPlayer2Score()
 {
-    cout << "Right Before Incrementing" << rightScore <<endl;
-    rightScore++;
-    cout << "Right After Incrementing" << rightScore <<endl;
-    rightScoreText.setString(FormatScore(rightScore));
+    player2_score++;
 }
 
-void UIService::DrawUI(RenderWindow& window)
+void UIService::update()
 {
-    window.draw(leftScoreText);
-    window.draw(rightScoreText);
+    left_score_text.setString(formatScore(player1_score));
+    right_score_text.setString(formatScore(player2_score));
+}
+
+void UIService::render(RenderWindow& window)
+{
+    window.draw(left_score_text);
+    window.draw(right_score_text);
 }

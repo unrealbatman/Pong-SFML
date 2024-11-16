@@ -22,7 +22,7 @@ int main()
 
     while (window.isOpen())
     {
-        event_manager->EventPolling(window);
+        event_manager->eventPolling(window);
 
         window.clear();
         gameService->PlayGame(window);

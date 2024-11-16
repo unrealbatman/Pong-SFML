@@ -1,7 +1,7 @@
 #pragma once
 #include "Ball.h"
 
-Ball::Ball(UIService service)
+Ball::Ball(UIService* service)
 {
     ui_service = service;
 
@@ -11,7 +11,7 @@ Ball::Ball(UIService service)
 
 void Ball::loadTexture()
 {
-    pong_ball_texture.loadFromFile(sprite_path);
+    pong_ball_texture.loadFromFile(texture_path);
 }
 
 void Ball::initializeVariables()
@@ -94,12 +94,12 @@ void Ball::handleOutofBoundCollision()
     // Check for out-of-bounds on the left or right boundary
     if (ball_bounds.left <= left_boundary)
     {
-        ui_service.IncrementRightScore();
+        ui_service->incrementPlayer2Score();
         reset();
     }
     else if (ball_bounds.left + ball_bounds.width >= right_boundary)
     {
-        ui_service.IncrementLeftScore();
+        ui_service->incrementPlayer1Score();
         reset();
     }
 }

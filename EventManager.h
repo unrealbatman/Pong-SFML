@@ -5,13 +5,13 @@ using namespace sf;
 class EventManager
 {
 private:
-    bool IsKeyPressed(Keyboard::Key key); 
+    bool isKeyPressed(Keyboard::Key key); 
 
 public:
-    void EventPolling(RenderWindow& window);
+    void eventPolling(RenderWindow& window);
 
-    bool IsWPressed();
-    bool IsSPressed();
-    bool IsUpArrowPressed();
-    bool IsDownArrowPressed();
+    bool isWPressed();
+    bool isSPressed();
+    bool isUpArrowPressed();
+    bool isDownArrowPressed();
 };

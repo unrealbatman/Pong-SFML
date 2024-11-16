@@ -3,7 +3,7 @@
 
 #include "EventManager.h"
 
-void EventManager::EventPolling(RenderWindow& window)
+void EventManager::eventPolling(RenderWindow& window)
 {
     Event event;
     while (window.pollEvent(event))
@@ -18,27 +18,27 @@ void EventManager::EventPolling(RenderWindow& window)
     }
 }
 
-bool EventManager::IsKeyPressed(Keyboard::Key key)
+bool EventManager::isKeyPressed(Keyboard::Key key)
 { 
     return Keyboard::isKeyPressed(key); 
 }
 
-bool EventManager::IsWPressed()
+bool EventManager::isWPressed()
 {
-    return IsKeyPressed(Keyboard::W);
+    return isKeyPressed(Keyboard::W);
 }
 
-bool EventManager::IsSPressed()
+bool EventManager::isSPressed()
 {
-    return IsKeyPressed(Keyboard::S);
+    return isKeyPressed(Keyboard::S);
 }
 
-bool EventManager::IsUpArrowPressed()
+bool EventManager::isUpArrowPressed()
 {
-    return IsKeyPressed(Keyboard::Up);
+    return isKeyPressed(Keyboard::Up);
 }
 
-bool EventManager::IsDownArrowPressed()
+bool EventManager::isDownArrowPressed()
 {
-    return IsKeyPressed(Keyboard::Down);
+    return isKeyPressed(Keyboard::Down);
 }
