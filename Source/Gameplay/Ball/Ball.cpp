@@ -1,141 +1,144 @@
 #pragma once
 #include "../../Header/Gameplay/Ball/Ball.h"
 
-Ball::Ball()
+namespace Gameplay
 {
-    loadTexture();
-    initializeVariables();
-}
-
-void Ball::loadTexture()
-{
-    pong_ball_texture.loadFromFile(texture_path);
-}
-
-void Ball::initializeVariables()
-{
-    pong_ball_sprite.setTexture(pong_ball_texture);
-    pong_ball_sprite.setScale(scale_x, scale_y);
-    pong_ball_sprite.setPosition(position_x, position_y);
-
-    velocity = Vector2f(ball_speed, ball_speed);     // Initial velocity in a random direction
-}
-
-void Ball::reset()
-{ 
-    pong_ball_sprite.setPosition(position_x, position_y);
-    velocity = Vector2f(ball_speed, ball_speed);
-    current_state = BallState::Idle;         
-    elapsed_delay_time = 0.0f;  
-}
-
-void Ball::updateDelayTime(float deltaTime)
-{
-    if (current_state == BallState::Idle)
+    Ball::Ball()
     {
-        elapsed_delay_time += deltaTime;
-        if (elapsed_delay_time >= delay_duration)
+        loadTexture();
+        initializeVariables();
+    }
+
+    void Ball::loadTexture()
+    {
+        pong_ball_texture.loadFromFile(texture_path);
+    }
+
+    void Ball::initializeVariables()
+    {
+        pong_ball_sprite.setTexture(pong_ball_texture);
+        pong_ball_sprite.setScale(scale_x, scale_y);
+        pong_ball_sprite.setPosition(position_x, position_y);
+
+        velocity = Vector2f(ball_speed, ball_speed);     // Initial velocity in a random direction
+    }
+
+    void Ball::reset()
+    {
+        pong_ball_sprite.setPosition(position_x, position_y);
+        velocity = Vector2f(ball_speed, ball_speed);
+        current_state = BallState::Idle;
+        elapsed_delay_time = 0.0f;
+    }
+
+    void Ball::updateDelayTime(float deltaTime)
+    {
+        if (current_state == BallState::Idle)
         {
-            current_state = BallState::Moving;
+            elapsed_delay_time += deltaTime;
+            if (elapsed_delay_time >= delay_duration)
+            {
+                current_state = BallState::Moving;
+            }
+            else
+            {
+                return;
+            }
         }
-        else
+    }
+
+    void Ball::move(TimeService* timeService)
+    {
+        updateDelayTime(timeService->getDeltaTime());
+
+        if (current_state == BallState::Moving)
         {
-            return;
+            pong_ball_sprite.move(velocity * timeService->getDeltaTime() * speed_multiplier);
         }
     }
-}
 
-void Ball::move(TimeService* timeService)
-{   
-    updateDelayTime(timeService->getDeltaTime());
-
-    if (current_state == BallState::Moving)
+    void Ball::handleBoudaryCollision()
     {
-        pong_ball_sprite.move(velocity * timeService->getDeltaTime() * speed_multiplier);
-    }
-}
+        FloatRect ball_bounds = pong_ball_sprite.getGlobalBounds();
 
-void Ball::handleBoudaryCollision()
-{
-    FloatRect ball_bounds = pong_ball_sprite.getGlobalBounds();
-
-    if (ball_bounds.top <= top_boundary || ball_bounds.top + ball_bounds.height >= bottom_boundary)
-    {
-        velocity.y = -velocity.y;  // Reverse vertical direction
-    }
-}
-
-void Ball::handlePaddleCollision(Paddle* player1, Paddle* player2)
-{
-    const RectangleShape& player1Paddle = player1->getPaddleSprite();
-    const RectangleShape& player2Paddle = player2->getPaddleSprite();
-
-    FloatRect ball_bounds = pong_ball_sprite.getGlobalBounds();
-    FloatRect Player1PaddleBounds = player1Paddle.getGlobalBounds();
-    FloatRect player2PaddleBounds = player2Paddle.getGlobalBounds();
-
-    if (ball_bounds.intersects(Player1PaddleBounds) && velocity.x < 0)
-    {
-        velocity.x = -velocity.x;  // Reverse horizontal direction
+        if (ball_bounds.top <= top_boundary || ball_bounds.top + ball_bounds.height >= bottom_boundary)
+        {
+            velocity.y = -velocity.y;  // Reverse vertical direction
+        }
     }
 
-    if (ball_bounds.intersects(player2PaddleBounds) && velocity.x > 0)
+    void Ball::handlePaddleCollision(Paddle* player1, Paddle* player2)
     {
-        velocity.x = -velocity.x;  // Reverse horizontal direction
+        const RectangleShape& player1Paddle = player1->getPaddleSprite();
+        const RectangleShape& player2Paddle = player2->getPaddleSprite();
+
+        FloatRect ball_bounds = pong_ball_sprite.getGlobalBounds();
+        FloatRect Player1PaddleBounds = player1Paddle.getGlobalBounds();
+        FloatRect player2PaddleBounds = player2Paddle.getGlobalBounds();
+
+        if (ball_bounds.intersects(Player1PaddleBounds) && velocity.x < 0)
+        {
+            velocity.x = -velocity.x;  // Reverse horizontal direction
+        }
+
+        if (ball_bounds.intersects(player2PaddleBounds) && velocity.x > 0)
+        {
+            velocity.x = -velocity.x;  // Reverse horizontal direction
+        }
     }
-}
 
-bool Ball::isLeftCollisionOccurred()
-{
-    return had_left_collison;
-}
-
-void Ball::updateLeftCollisionState(bool value)
-{
-    had_left_collison = value;
-}
-
-bool Ball::isRightCollisionOccurred()
-{
-    return had_right_collison;
-}
-
-void Ball::updateRightCollisionState(bool value)
-{
-    had_right_collison = value;
-}
-
-void Ball::handleOutofBoundCollision()
-{
-    FloatRect ball_bounds = pong_ball_sprite.getGlobalBounds();
-
-    // Check for out-of-bounds on the left or right boundary
-    if (ball_bounds.left <= left_boundary)
+    bool Ball::isLeftCollisionOccurred()
     {
-        updateLeftCollisionState(true);
-        reset();
+        return had_left_collison;
     }
-    else if (ball_bounds.left + ball_bounds.width >= right_boundary)
+
+    void Ball::updateLeftCollisionState(bool value)
     {
-        updateRightCollisionState(true);
-        reset();
+        had_left_collison = value;
     }
-}
 
-void Ball::onCollision(Paddle* player1, Paddle* player2)
-{
-    handleBoudaryCollision();
-    handlePaddleCollision(player1, player2);
-    handleOutofBoundCollision();
-}
+    bool Ball::isRightCollisionOccurred()
+    {
+        return had_right_collison;
+    }
 
-void Ball::update(Paddle* player1, Paddle* player2, TimeService* timeService)
-{
-    move(timeService);
-    onCollision(player1, player2);
-}
+    void Ball::updateRightCollisionState(bool value)
+    {
+        had_right_collison = value;
+    }
 
-void Ball::render(RenderWindow& window)
-{
-	window.draw(pong_ball_sprite);
+    void Ball::handleOutofBoundCollision()
+    {
+        FloatRect ball_bounds = pong_ball_sprite.getGlobalBounds();
+
+        // Check for out-of-bounds on the left or right boundary
+        if (ball_bounds.left <= left_boundary)
+        {
+            updateLeftCollisionState(true);
+            reset();
+        }
+        else if (ball_bounds.left + ball_bounds.width >= right_boundary)
+        {
+            updateRightCollisionState(true);
+            reset();
+        }
+    }
+
+    void Ball::onCollision(Paddle* player1, Paddle* player2)
+    {
+        handleBoudaryCollision();
+        handlePaddleCollision(player1, player2);
+        handleOutofBoundCollision();
+    }
+
+    void Ball::update(Paddle* player1, Paddle* player2, TimeService* timeService)
+    {
+        move(timeService);
+        onCollision(player1, player2);
+    }
+
+    void Ball::render(RenderWindow* game_window)
+    {
+        game_window->draw(pong_ball_sprite);
+    }
 }

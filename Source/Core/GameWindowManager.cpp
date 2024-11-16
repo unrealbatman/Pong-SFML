@@ -1,42 +1,40 @@
 #include "../../Header/Core/GameWindowManager.h"
 
-void GameWindowManager::createGameWindow(int width, int height, const string& title)
+namespace Core
 {
-    window.create(VideoMode(width, height), title);
-}
-
-void GameWindowManager::initialize(int width, int height, const string& title)
-{
-    event_manager = new EventManager();
-    gameplay_manager = new GameplayManager(event_manager);
-
-    createGameWindow(width, height, title);
-}
-
-void GameWindowManager::gameLoop()
-{
-    while (window.isOpen()) 
+    void GameWindowManager::initialize()
     {
-        pollEvents();
+        game_window = new RenderWindow();
+        event_manager = new EventManager();
+        gameplay_manager = new GameplayManager(event_manager);
 
-        window.clear();
-        update();
-        render();
-        window.display();
+        createGameWindow();
     }
-}
 
-void GameWindowManager::pollEvents()
-{
-    event_manager->eventPolling(window);
-}
+    void GameWindowManager::createGameWindow()
+    {
+        game_window->create(VideoMode(game_window_width, game_window_height), game_title);
+    }
 
-void GameWindowManager::update()
-{
-    gameplay_manager->update();
-}
+    bool GameWindowManager::isGameRunning()
+    { 
+        return game_window->isOpen();
+    }
 
-void GameWindowManager::render()
-{
-    gameplay_manager->render(window);
+    void GameWindowManager::pollEvents()
+    {
+        event_manager->eventPolling(game_window);
+    }
+
+    void GameWindowManager::update()
+    {
+        gameplay_manager->update();
+    }
+
+    void GameWindowManager::render()
+    {
+        game_window->clear();
+        gameplay_manager->render(game_window);
+        game_window->display();
+    }
 }

@@ -2,19 +2,22 @@
 #include <chrono>
 using namespace std;
 
-class TimeService
+namespace Utility
 {
-private:
-	chrono::time_point<chrono::steady_clock> previous_time;
-	float delta_time;
+	class TimeService
+	{
+	private:
+		chrono::time_point<chrono::steady_clock> previous_time;
+		float delta_time;
 
-	void updateDeltaTime();
-	float calculateDeltaTime();
-	void updatePreviousTime(); // Update previous_time to the current time
+		void updateDeltaTime();
+		float calculateDeltaTime();
+		void updatePreviousTime(); // Update previous_time to the current time
 
-public:
+	public:
 
-	void initialize();
-	void update();
-	float getDeltaTime();
-};
+		void initialize();
+		void update();
+		float getDeltaTime();
+	};
+}

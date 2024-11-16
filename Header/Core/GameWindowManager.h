@@ -1,23 +1,32 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../../Header/Events/EventManager.h"
+#include "../../Header/Event/EventManager.h"
 #include "../../Header/Gameplay/GameplayManager.h"
 using namespace sf;
 using namespace std;
+using namespace Gameplay;
 
-class GameWindowManager 
+namespace Core
 {
-private:
-    RenderWindow window;
-    EventManager* event_manager;
-    GameplayManager* gameplay_manager;
+    class GameWindowManager
+    {
+    private:
 
-    void createGameWindow(int width, int height, const string& title);
+        int game_window_width = 1280;
+        int game_window_height = 720;
+        string game_title = "SFML-Pong!";
 
-public:
-    void initialize(int width, int height, const string& title);
-    void gameLoop();
-    void pollEvents();
-    void update();
-    void render();
-};
+        RenderWindow* game_window;
+        EventManager* event_manager;
+        GameplayManager* gameplay_manager;
+
+        void createGameWindow();
+
+    public:
+        void initialize();
+        bool isGameRunning();
+        void pollEvents();
+        void update();
+        void render();
+    };
+}

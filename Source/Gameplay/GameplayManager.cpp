@@ -1,43 +1,54 @@
 #pragma once
 #include "../../Header/Gameplay/GameplayManager.h"
 
-GameplayManager::GameplayManager(EventManager* manager)
+namespace Gameplay
 {
-	time_service->initialize();
-	event_manager = manager;
-}
-
-void GameplayManager::updatePlayerScore()
-{
-	if (ball->isLeftCollisionOccurred())
+	GameplayManager::GameplayManager(EventManager* manager)
 	{
-		ui_service->incrementPlayer2Score();
-		ball->updateLeftCollisionState(false);
+		time_service->initialize();
+		event_manager = manager;
 	}
 
-	if (ball->isRightCollisionOccurred())
+	void GameplayManager::updatePlayerScore()
 	{
-		ui_service->incrementPlayer1Score();
-		ball->updateRightCollisionState(false);
+		if (ball->isLeftCollisionOccurred())
+		{
+			ui_service->incrementPlayer2Score();
+			ball->updateLeftCollisionState(false);
+			resetPlayer();
+		}
+
+		if (ball->isRightCollisionOccurred())
+		{
+			ui_service->incrementPlayer1Score();
+			ball->updateRightCollisionState(false);
+			resetPlayer();
+		}
 	}
-}
 
-void GameplayManager::update()
-{
-	time_service->update();
-	player1->update(event_manager->isWPressed(), event_manager->isSPressed());
-	player2->update(event_manager->isUpArrowPressed(), event_manager->isDownArrowPressed());
-	ball->update(player1, player2, time_service); 
-	
-	updatePlayerScore();
-	ui_service->update();
-}
+	void GameplayManager::resetPlayer()
+	{
+		player1->reset(player1_position_x, player1_position_y);
+		player2->reset(player2_postion_x, player2_postion_y);
+	}
 
-void GameplayManager::render(RenderWindow& window)
-{
-	boundary->render(window);
-	ball->render(window);
-	player1->render(window);
-	player2->render(window);
-	ui_service->render(window);
+	void GameplayManager::update()
+	{
+		time_service->update();
+		player1->update(event_manager->isWPressed(), event_manager->isSPressed());
+		player2->update(event_manager->isUpArrowPressed(), event_manager->isDownArrowPressed());
+		ball->update(player1, player2, time_service);
+
+		updatePlayerScore();
+		ui_service->update();
+	}
+
+	void GameplayManager::render(RenderWindow* game_window)
+	{
+		boundary->render(game_window);
+		ball->render(game_window);
+		player1->render(game_window);
+		player2->render(game_window);
+		ui_service->render(game_window);
+	}
 }
