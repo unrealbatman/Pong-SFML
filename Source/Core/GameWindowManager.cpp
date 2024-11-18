@@ -19,21 +19,18 @@ namespace Core
         return game_window;
     }
 
-    bool GameWindowManager::isGameRunning()
+    bool GameWindowManager::isGameOpen()
     { 
         return game_window->isOpen();
     }
 
-    void GameWindowManager::update() {}
-
-    void GameWindowManager::render()
+    void GameWindowManager::clearGameWindow()
     {
         game_window->clear();
+    }
 
-        sf::CircleShape shape(100.f);
-        shape.setFillColor(sf::Color::Green);
-        game_window->draw(shape);
-
-        game_window->display();
+    void GameWindowManager::displayGameWindow()
+    {
+        return game_window->display();
     }
 }
