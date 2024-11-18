@@ -10,7 +10,6 @@ int main()
 
     while (game_window_manager->isGameRunning())
     {
-        game_window_manager->pollEvents();
         game_window_manager->update();
         game_window_manager->render();
     }

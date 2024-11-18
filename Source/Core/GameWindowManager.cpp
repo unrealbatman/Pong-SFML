@@ -19,8 +19,6 @@ namespace Core
         return game_window->isOpen();
     }
 
-    void GameWindowManager::pollEvents() {}
-
     void GameWindowManager::update() {}
 
     void GameWindowManager::render()

@@ -20,7 +20,6 @@ namespace Core
     public:
         void initialize();
         bool isGameRunning();
-        void pollEvents();
         void update();
         void render();
     };
