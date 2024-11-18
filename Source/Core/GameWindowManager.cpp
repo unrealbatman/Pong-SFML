@@ -14,6 +14,11 @@ namespace Core
         game_window->create(VideoMode(game_window_width, game_window_height), game_title);
     }
 
+    RenderWindow* GameWindowManager::getGameWindow()
+    {
+        return game_window;
+    }
+
     bool GameWindowManager::isGameRunning()
     { 
         return game_window->isOpen();
