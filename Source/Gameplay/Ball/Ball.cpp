@@ -27,11 +27,34 @@ namespace Gameplay
     {
         pong_ball_sprite.setPosition(position_x, position_y);
         velocity = Vector2f(ball_speed, ball_speed);
+        current_state = BallState::Idle;
+        elapsed_delay_time = 0.0f;
     }
 
-    void Ball::move()
+    void Ball::updateDelayTime(float deltaTime)
     {
-        pong_ball_sprite.move(velocity / speed_multiplier);
+        if (current_state == BallState::Idle)
+        {
+            elapsed_delay_time += deltaTime;
+            if (elapsed_delay_time >= delay_duration)
+            {
+                current_state = BallState::Moving;
+            }
+            else
+            {
+                return;
+            }
+        }
+    }
+
+    void Ball::move(TimeService* timeService)
+    {
+        updateDelayTime(timeService->getDeltaTime());
+
+        if (current_state == BallState::Moving)
+        {
+            pong_ball_sprite.move(velocity * timeService->getDeltaTime() * speed_multiplier);
+        }
     }
 
     void Ball::handleBoudaryCollision()
@@ -86,9 +109,9 @@ namespace Gameplay
         handleOutofBoundCollision();
     }
 
-    void Ball::update(Paddle* player1, Paddle* player2)
+    void Ball::update(Paddle* player1, Paddle* player2, TimeService* timeService)
     {
-        move();
+        move(timeService);
         onCollision(player1, player2);
     }
 

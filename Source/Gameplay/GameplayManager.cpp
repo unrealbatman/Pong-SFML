@@ -5,6 +5,7 @@ namespace Gameplay
 {
 	GameplayManager::GameplayManager(EventManager* manager)
 	{
+		time_service->initialize();
 		event_manager = manager;
 	}
 
@@ -16,9 +17,10 @@ namespace Gameplay
 
 	void GameplayManager::update()
 	{
+		time_service->update();
 		player1->update(event_manager->isWPressed(), event_manager->isSPressed());
 		player2->update(event_manager->isUpArrowPressed(), event_manager->isDownArrowPressed());
-		ball->update(player1, player2);
+		ball->update(player1, player2, time_service);
 	}
 
 	void GameplayManager::render(RenderWindow* game_window)
