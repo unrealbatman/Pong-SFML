@@ -41,6 +41,9 @@ namespace Gameplay
         const float left_boundary = 0.0f;
         const float right_boundary = 1280.0f;
 
+        bool had_left_collison = false;
+        bool had_right_collison = false;
+
         void loadTexture();
         void initializeVariables();
         void reset();
@@ -49,6 +52,12 @@ namespace Gameplay
     public:
 
         Ball();
+
+        bool isLeftCollisionOccurred();
+        void updateLeftCollisionState(bool value);
+
+        bool isRightCollisionOccurred();
+        void updateRightCollisionState(bool value);
 
         void move(TimeService* timeService);
 
