@@ -29,7 +29,6 @@ namespace Event {
     }
 
     bool EventManager::isLeftMouseButtonClicked(sf::RenderWindow* game_window) {
-        // Detect if the left mouse button is clicked
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
             sf::Vector2i position = sf::Mouse::getPosition(*game_window);
 
