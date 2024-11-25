@@ -1,44 +1,42 @@
 #include "../../Header/Event/EventManager.h"
 
-namespace Event
-{
-    void EventManager::pollEvents(RenderWindow* game_window)
-    {
-        sf::Event event;
-        while (game_window->pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                game_window->close();
+namespace Event {
 
-            // Check for Escape key to close the game
-            if (event.type == sf::Event::KeyPressed && event.key.code == Keyboard::Escape) {
+    void EventManager::pollEvents(sf::RenderWindow* game_window) {
+        sf::Event event;
+
+        // Poll all events in the queue
+        while (game_window->pollEvent(event)) {
+            // Handle window close event
+            if (event.type == sf::Event::Closed) {
                 game_window->close();
+            }
+
+            // Use helper functions for handling specific events
+            if (isKeyPressed(sf::Keyboard::Escape)) {
+                game_window->close(); // Quit the game on "Escape"
+            }
+
+            if (isLeftMouseButtonClicked(game_window)) {
+                // Left mouse click handled
             }
         }
     }
 
-    bool EventManager::isKeyPressed(Keyboard::Key key)
-    {
-        return Keyboard::isKeyPressed(key);
+    bool EventManager::isKeyPressed(sf::Keyboard::Key key) {
+        // Detect if a specific key is pressed
+        return sf::Keyboard::isKeyPressed(key);
     }
 
-    bool EventManager::isWPressed()
-    {
-        return isKeyPressed(Keyboard::W);
+    bool EventManager::isLeftMouseButtonClicked(sf::RenderWindow* game_window) {
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            sf::Vector2i position = sf::Mouse::getPosition(*game_window);
+
+            // Log the mouse position
+            std::cout << "Left mouse click at: " << position.x << ", " << position.y << std::endl;
+            return true;
+        }
+        return false;
     }
 
-    bool EventManager::isSPressed()
-    {
-        return isKeyPressed(Keyboard::S);
-    }
-
-    bool EventManager::isUpArrowPressed()
-    {
-        return isKeyPressed(Keyboard::Up);
-    }
-
-    bool EventManager::isDownArrowPressed()
-    {
-        return isKeyPressed(Keyboard::Down);
-    }
 }
