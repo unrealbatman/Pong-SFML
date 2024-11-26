@@ -465,7 +465,7 @@ private:
     /// \param window Window to set as fullscreen window
     ///
     ////////////////////////////////////////////////////////////
-    void setFullscreenWindow(const WindowBase* game_window);
+    void setFullscreenWindow(const WindowBase* window);
 
     ////////////////////////////////////////////////////////////
     // Member data
