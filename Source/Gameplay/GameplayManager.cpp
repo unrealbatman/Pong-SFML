@@ -16,8 +16,8 @@ namespace Gameplay
 
 	void GameplayManager::update()
 	{
-		player1->update(event_manager->isWPressed(), event_manager->isSPressed());
-		player2->update(event_manager->isUpArrowPressed(), event_manager->isDownArrowPressed());
+		player1->update(event_manager->isKeyPressed(Keyboard::W), event_manager->isKeyPressed(Keyboard::S));
+		player2->update(event_manager->isKeyPressed(Keyboard::Up), event_manager->isKeyPressed(Keyboard::Down));
 		ball->update(player1, player2);
 	}
 

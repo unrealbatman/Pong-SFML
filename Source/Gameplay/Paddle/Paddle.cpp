@@ -23,6 +23,8 @@ namespace Gameplay
 		paddle_sprite.setPosition(position_x, position_y);
 	}
 
+
+	//Move Paddles
 	void Paddle::movePaddle(bool move_up_key_pressed, bool move_down_key_pressed)
 	{
 		if (move_up_key_pressed && paddle_sprite.getPosition().y > topBoundary)

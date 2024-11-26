@@ -12,7 +12,7 @@ namespace Gameplay
 		const float paddle_width = 20.0f;
 		const float paddle_height = 140.0f;
 
-		float paddleSpeed = 0.2f;
+		float paddleSpeed = 0.8f;
 		float topBoundary = 20.0f;
 		float bottomBoundary = 700.0f;
 

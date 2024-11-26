@@ -12,7 +12,7 @@ namespace Gameplay
         Texture pong_ball_texture;
         Sprite pong_ball_sprite;
 
-        string texture_path = "Assets/Sprites/Ball.png";
+        string texture_path = "Assets/Textures/Ball.png";
 
         const float scale_x = 0.2f;
         const float scale_y = 0.2f;
@@ -21,7 +21,7 @@ namespace Gameplay
         const float position_y = 335.0f;
 
         Vector2f velocity;   // Velocity vector for ball movement
-        const float ball_speed = 10.0f;
+        const float ball_speed = 50.0f;
         const float speed_multiplier = 100.0f;
 
         const float top_boundary = 20.0f;

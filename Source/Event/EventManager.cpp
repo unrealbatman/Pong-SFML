@@ -11,7 +11,7 @@ namespace Event
                 game_window->close();
 
             // Check for Escape key to close the game
-            if (event.type == sf::Event::KeyPressed && event.key.code == Keyboard::Escape) {
+            if (isKeyPressed(Keyboard::Escape)) {
                 game_window->close();
             }
         }
@@ -22,23 +22,4 @@ namespace Event
         return Keyboard::isKeyPressed(key);
     }
 
-    bool EventManager::isWPressed()
-    {
-        return isKeyPressed(Keyboard::W);
-    }
-
-    bool EventManager::isSPressed()
-    {
-        return isKeyPressed(Keyboard::S);
-    }
-
-    bool EventManager::isUpArrowPressed()
-    {
-        return isKeyPressed(Keyboard::Up);
-    }
-
-    bool EventManager::isDownArrowPressed()
-    {
-        return isKeyPressed(Keyboard::Down);
-    }
 }
