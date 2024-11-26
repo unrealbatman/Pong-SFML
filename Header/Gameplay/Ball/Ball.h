@@ -20,9 +20,8 @@ namespace Gameplay
         const float position_x = 615.0f;
         const float position_y = 335.0f;
 
-        Vector2f velocity;   // Velocity vector for ball movement
-        const float ball_speed = 50.0f;
-        const float speed_multiplier = 100.0f;
+        const float ball_speed = .5f;
+        Vector2f velocity;  // Velocity vector for ball movement
 
         const float top_boundary = 20.0f;
         const float bottom_boundary = 700.0f;

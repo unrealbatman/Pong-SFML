@@ -31,7 +31,7 @@ namespace Gameplay
 
     void Ball::move()
     {
-        pong_ball_sprite.move(velocity / speed_multiplier);
+        pong_ball_sprite.move(velocity);
     }
 
     void Ball::handleBoudaryCollision()

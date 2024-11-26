@@ -25,8 +25,6 @@ namespace Gameplay
 	public:
 		GameplayManager(EventManager* manager);
 
-		void resetPlayer();
-
 		void update();
 		void render(RenderWindow* game_window);
 	};

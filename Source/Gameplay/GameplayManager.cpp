@@ -8,12 +8,6 @@ namespace Gameplay
 		event_manager = manager;
 	}
 
-	void GameplayManager::resetPlayer()
-	{
-		player1->reset(player1_position_x, player1_position_y);
-		player2->reset(player2_postion_x, player2_postion_y);
-	}
-
 	void GameplayManager::update()
 	{
 		player1->update(event_manager->isKeyPressed(Keyboard::W), event_manager->isKeyPressed(Keyboard::S));
