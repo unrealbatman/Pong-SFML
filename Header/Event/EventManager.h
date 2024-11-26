@@ -11,6 +11,5 @@ namespace Event
     public:
         void pollEvents(RenderWindow* game_window);
         bool isKeyPressed(Keyboard::Key key);
-
     };
 }

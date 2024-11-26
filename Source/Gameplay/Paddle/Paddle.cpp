@@ -29,11 +29,11 @@ namespace Gameplay
 	{
 		if (move_up_key_pressed && paddle_sprite.getPosition().y > topBoundary)
 		{
-			paddle_sprite.move(0, -paddleSpeed);
+			paddle_sprite.move(0, paddleSpeed);
 		}
 		if (move_down_key_pressed && paddle_sprite.getPosition().y + paddle_sprite.getSize().y < bottomBoundary)
 		{
-			paddle_sprite.move(0, paddleSpeed);
+			paddle_sprite.move(0, -paddleSpeed);
 		}
 	}
 
