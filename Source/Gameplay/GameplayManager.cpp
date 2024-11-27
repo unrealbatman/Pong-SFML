@@ -9,24 +9,24 @@ namespace Gameplay
 		event_manager = manager;
 	}
 
-	void GameplayManager::updatePlayerScore()
+	void GameplayManager::processRoundEnd()
 	{
 		if (ball->isLeftCollisionOccurred())
 		{
 			ui_service->incrementPlayer2Score();
 			ball->updateLeftCollisionState(false);
-			resetPlayer();
+			resetPlayers();
 		}
 
 		if (ball->isRightCollisionOccurred())
 		{
 			ui_service->incrementPlayer1Score();
 			ball->updateRightCollisionState(false);
-			resetPlayer();
+			resetPlayers();
 		}
 	}
 
-	void GameplayManager::resetPlayer()
+	void GameplayManager::resetPlayers()
 	{
 		player1->reset(player1_position_x, player1_position_y);
 		player2->reset(player2_postion_x, player2_postion_y);
@@ -39,7 +39,7 @@ namespace Gameplay
 		player2->update(event_manager->isKeyPressed(Keyboard::Up), event_manager->isKeyPressed(Keyboard::Down), time_service);
 		ball->update(player1, player2, time_service);
 
-		updatePlayerScore();
+		processRoundEnd();
 		ui_service->update();
 	}
 
