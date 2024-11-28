@@ -72,10 +72,7 @@
     <ClCompile Include="Source\UI\UIService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Sound\SoundManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Sound\SoundManager.cpp">
+    <ClCompile Include="Source\Sounds\SoundManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,7 +104,7 @@
     <ClInclude Include="Header\UI\UIService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Sound\SoundManager.h">
+    <ClInclude Include="Header\Sounds\SoundManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
