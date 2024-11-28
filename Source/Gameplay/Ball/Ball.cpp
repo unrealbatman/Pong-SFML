@@ -63,6 +63,7 @@ namespace Gameplay
 
         if (ball_bounds.top <= top_boundary || ball_bounds.top + ball_bounds.height >= bottom_boundary)
         {
+            SoundManager::PlaySound(SoundType::BALL_BOUNCE);
             velocity.y = -velocity.y;  // Reverse vertical direction
         }
     }
@@ -78,11 +79,13 @@ namespace Gameplay
 
         if (ball_bounds.intersects(Player1PaddleBounds) && velocity.x < 0)
         {
+            SoundManager::PlaySound(SoundType::BALL_BOUNCE);
             velocity.x = -velocity.x;  // Reverse horizontal direction
         }
 
         if (ball_bounds.intersects(player2PaddleBounds) && velocity.x > 0)
         {
+            SoundManager::PlaySound(SoundType::BALL_BOUNCE);
             velocity.x = -velocity.x;  // Reverse horizontal direction
         }
     }
