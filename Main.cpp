@@ -15,7 +15,6 @@ int main()
     while (game_window_manager->isGameRunning())
     {
         event_manager->pollEvents(game_window_manager->getGameWindow());
-        game_window_manager->update();
         game_window_manager->render();
     }
 
