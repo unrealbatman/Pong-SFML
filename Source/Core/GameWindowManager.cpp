@@ -24,8 +24,6 @@ namespace Core
         return game_window->isOpen();
     }
 
-    void GameWindowManager::update() {}
-
     void GameWindowManager::render()
     {
         game_window->clear();
