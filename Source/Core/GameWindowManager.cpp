@@ -25,10 +25,6 @@ namespace Core
     {
         game_window->clear();
 
-        sf::CircleShape shape(100.f);
-        shape.setFillColor(sf::Color::Green);
-        game_window->draw(shape);
-
         game_window->display();
     }
 }
