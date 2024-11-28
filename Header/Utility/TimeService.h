@@ -8,7 +8,7 @@ namespace Utility
 	{
 	private:
 		chrono::time_point<chrono::steady_clock> previous_time;
-		float delta_time;
+		float delta_time = 0;
 
 		void updateDeltaTime();
 		float calculateDeltaTime();

@@ -13,7 +13,7 @@ namespace Core
         int game_window_height = 720;
         string game_title = "SFML-Pong!";
 
-        RenderWindow* game_window;
+        RenderWindow* game_window = nullptr;
 
         void createGameWindow();
 
