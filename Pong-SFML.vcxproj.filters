@@ -43,40 +43,67 @@
     <Filter Include="Header Files\Header\Sounds">
       <UniqueIdentifier>{eb5f2858-1bdb-4585-b4fd-6e801d842e0c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{a3a85b96-c87e-4a80-953b-1baf0adf7536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Events">
+      <UniqueIdentifier>{7fab8ac1-bfec-4fc2-96de-aeb225853445}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GamePlay">
+      <UniqueIdentifier>{e852c02a-f884-4c7f-b903-2dc118832ef7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GamePlay\Ball">
+      <UniqueIdentifier>{820ba20f-004d-42c8-8a80-77ffbe770c2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GamePlay\Paddle">
+      <UniqueIdentifier>{de676cdd-bccb-4847-9d24-2f53c16ae70d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GamePlay\Boundary">
+      <UniqueIdentifier>{ee83ef03-61fe-41f6-b4fd-97105184a4a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Sounds">
+      <UniqueIdentifier>{aaa11e86-4393-4276-9c97-44a3f8281fc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{9a4b3dab-b958-4112-883c-03ef39b59a4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utility">
+      <UniqueIdentifier>{6a559c72-52cf-4408-aa3e-8ccad51e5367}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\GameWindowManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\GameLoop.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\Event\EventManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Events</Filter>
     </ClCompile>
     <ClCompile Include="Source\Gameplay\GameplayManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Gameplay\Paddle\Paddle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Gameplay\Boundary\Boundary.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GamePlay</Filter>
     </ClCompile>
     <ClCompile Include="Source\Gameplay\Ball\Ball.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GamePlay\Ball</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utility\TimeService.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Source\Gameplay\Paddle\Paddle.cpp">
+      <Filter>Source Files\GamePlay\Paddle</Filter>
     </ClCompile>
-    <ClCompile Include="Source\UI\UIService.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Source\Gameplay\Boundary\Boundary.cpp">
+      <Filter>Source Files\GamePlay\Boundary</Filter>
     </ClCompile>
     <ClCompile Include="Source\Sounds\SoundManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Sounds</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\UIService.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utility\TimeService.cpp">
+      <Filter>Source Files\Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
