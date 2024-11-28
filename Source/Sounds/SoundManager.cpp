@@ -37,7 +37,7 @@ namespace Sound
             std::cerr << "Error loading background music file: " << bgmPath << std::endl;
     }
 
-    void SoundManager::PlaySound(SoundType soundType)
+    void SoundManager::PlaySoundEffect(SoundType soundType)
     {
         switch (soundType)
         {
@@ -48,7 +48,7 @@ namespace Sound
             std::cerr << "Invalid sound type" << std::endl;
             return;
         }
-
+        
         soundEffect.play();
     }
 

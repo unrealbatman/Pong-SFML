@@ -24,7 +24,7 @@ namespace Sound
         SoundManager();
         ~SoundManager();
         void Initialize();
-        static void PlaySound(SoundType soundType);
+        static void PlaySoundEffect(SoundType soundType);
         static void PlayBackgroundMusic();
 
     private:
