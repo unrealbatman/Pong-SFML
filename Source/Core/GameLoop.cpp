@@ -7,19 +7,8 @@ namespace Core
 		game_window_manager = new GameWindowManager();
 		event_manager = new EventManager();
 		gameplay_manager = new GameplayManager(event_manager);
-		sound_manager = new SoundManager();
 
 		game_window_manager->initialize();
-
-		SoundManager::PlayBackgroundMusic();
-	}
-
-	GameLoop::~GameLoop()
-	{
-		delete game_window_manager;
-		delete event_manager;
-		delete gameplay_manager;
-		delete sound_manager;
 	}
 
 	bool GameLoop::isGameRunning()
