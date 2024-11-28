@@ -7,9 +7,14 @@ namespace Event
     class EventManager
     {
     private:
+        bool isKeyPressed(Keyboard::Key key);
 
     public:
         void pollEvents(RenderWindow* game_window);
-        bool isKeyPressed(Keyboard::Key key);
+
+        bool isWPressed();
+        bool isSPressed();
+        bool isUpArrowPressed();
+        bool isDownArrowPressed();
     };
 }

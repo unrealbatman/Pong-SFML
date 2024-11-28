@@ -21,4 +21,24 @@ namespace Event
     {
         return Keyboard::isKeyPressed(key);
     }
+
+    bool EventManager::isWPressed()
+    {
+        return isKeyPressed(Keyboard::W);
+    }
+
+    bool EventManager::isSPressed()
+    {
+        return isKeyPressed(Keyboard::S);
+    }
+
+    bool EventManager::isUpArrowPressed()
+    {
+        return isKeyPressed(Keyboard::Up);
+    }
+
+    bool EventManager::isDownArrowPressed()
+    {
+        return isKeyPressed(Keyboard::Down);
+    }
 }
