@@ -26,9 +26,6 @@ namespace Core
 	{
 		game_window_manager->clearGameWindow();
 
-		sf::CircleShape shape(100.f);
-		shape.setFillColor(sf::Color::Green);
-		game_window_manager->getGameWindow()->draw(shape);
 
 		game_window_manager->displayGameWindow();
 	}
