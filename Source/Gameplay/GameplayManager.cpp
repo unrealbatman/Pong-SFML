@@ -6,6 +6,8 @@ namespace Gameplay
 	GameplayManager::GameplayManager(EventManager* manager)
 	{
 		time_service->initialize();
+		sound_service.Initialize();
+		sound_service.PlayBackgroundMusic();
 		event_manager = manager;
 	}
 
