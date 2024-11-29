@@ -18,7 +18,10 @@ namespace Event {
             }
 
             if (isLeftMouseButtonClicked(game_window)) {
-                // Left mouse click handled
+                sf::Vector2i position = sf::Mouse::getPosition(*game_window);
+
+                // Log the mouse position
+                std::cout << "Left mouse click at: " << position.x << ", " << position.y << std::endl;
             }
         }
     }
@@ -30,10 +33,7 @@ namespace Event {
 
     bool EventManager::isLeftMouseButtonClicked(sf::RenderWindow* game_window) {
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            sf::Vector2i position = sf::Mouse::getPosition(*game_window);
-
-            // Log the mouse position
-            std::cout << "Left mouse click at: " << position.x << ", " << position.y << std::endl;
+            
             return true;
         }
         return false;
