@@ -17,26 +17,12 @@ namespace Event {
                 game_window->close(); // Quit the game on "Escape"
             }
 
-            if (isLeftMouseButtonClicked(game_window)) {
-                // Left mouse click handled
-            }
         }
     }
 
     bool EventManager::isKeyPressed(sf::Keyboard::Key key) {
         // Detect if a specific key is pressed
         return sf::Keyboard::isKeyPressed(key);
-    }
-
-    bool EventManager::isLeftMouseButtonClicked(sf::RenderWindow* game_window) {
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            sf::Vector2i position = sf::Mouse::getPosition(*game_window);
-
-            // Log the mouse position
-            std::cout << "Left mouse click at: " << position.x << ", " << position.y << std::endl;
-            return true;
-        }
-        return false;
     }
 
 }
