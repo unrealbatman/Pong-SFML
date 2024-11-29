@@ -7,15 +7,15 @@ using namespace Event;
 
 int main()
 {
-    GameWindowManager* game_window_manager = new GameWindowManager();
-    EventManager* event_manager = new EventManager();
+    GameWindowManager game_window_manager;
+    EventManager event_manager;
     
-    game_window_manager->initialize();
+    game_window_manager.initialize();
 
-    while (game_window_manager->isGameRunning())
+    while (game_window_manager.isGameRunning())
     {
-        event_manager->pollEvents(game_window_manager->getGameWindow());
-        game_window_manager->render();
+        event_manager.pollEvents(game_window_manager.getGameWindow());
+        game_window_manager.render();
     }
 
     return 0;
