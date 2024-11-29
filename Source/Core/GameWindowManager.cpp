@@ -9,9 +9,12 @@ namespace Core
         createGameWindow();
     }
 
-    void GameWindowManager::createGameWindow()
-    {
-        game_window->create(VideoMode(game_window_width, game_window_height), game_title);
+    void GameWindowManager::createGameWindow() {
+        game_window->create(
+            sf::VideoMode::getDesktopMode(),    // Get screen resolution
+            "Pong Game",                        // Window title
+            sf::Style::Fullscreen               // Fullscreen mode
+        );
     }
 
     bool GameWindowManager::isGameRunning()
