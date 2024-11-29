@@ -17,7 +17,7 @@ namespace Event {
                 game_window->close(); // Quit the game on "Escape"
             }
 
-            if (isLeftMouseButtonClicked(game_window)) {
+            if (isLeftMouseButtonClicked()) {
                 sf::Vector2i position = sf::Mouse::getPosition(*game_window);
 
                 // Log the mouse position
@@ -31,12 +31,8 @@ namespace Event {
         return sf::Keyboard::isKeyPressed(key);
     }
 
-    bool EventManager::isLeftMouseButtonClicked(sf::RenderWindow* game_window) {
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            
-            return true;
-        }
-        return false;
+    bool EventManager::isLeftMouseButtonClicked() {
+        return (sf::Mouse::isButtonPressed(sf::Mouse::Left));
     }
 
 }
