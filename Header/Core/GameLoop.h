@@ -3,6 +3,7 @@
 #include "../../Header/Core/GameWindowManager.h"
 #include "../../Header/Event/EventManager.h"
 #include "../../Header/Gameplay/GameplayManager.h"
+
 using namespace sf;
 using namespace std;
 using namespace Core;
