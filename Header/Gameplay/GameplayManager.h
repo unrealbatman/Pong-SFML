@@ -25,7 +25,7 @@ namespace Gameplay
 	public:
 		GameplayManager(EventManager* manager);
 
-		void ResetGame();
+		void CheckRoundState();
 
 		void resetPlayers();
 
