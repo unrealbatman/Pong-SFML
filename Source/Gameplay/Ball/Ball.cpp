@@ -63,8 +63,8 @@ namespace Gameplay
 
         if (ball_bounds.top <= top_boundary || ball_bounds.top + ball_bounds.height >= bottom_boundary)
         {
-            SoundManager::PlaySoundEffect(SoundType::BALL_BOUNCE);
             velocity.y = -velocity.y;  // Reverse vertical direction
+            SoundManager::PlaySoundEffect(SoundType::BALL_BOUNCE);
         }
     }
 
