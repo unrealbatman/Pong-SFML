@@ -38,7 +38,8 @@ namespace Gameplay
     {
         FloatRect ball_bounds = pong_ball_sprite.getGlobalBounds();
 
-        if (ball_bounds.top <= top_boundary || ball_bounds.top + ball_bounds.height >= bottom_boundary)
+        if ((ball_bounds.top <= top_boundary && velocity.y < 0) ||
+            (ball_bounds.top + ball_bounds.height >= bottom_boundary && velocity.y > 0))
         {
             velocity.y = -velocity.y;  // Reverse vertical direction
         }
