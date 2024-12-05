@@ -3,6 +3,7 @@
 
 namespace Gameplay
 {
+    using namespace std;
     Ball::Ball()
     {
         loadTexture();
@@ -61,7 +62,12 @@ namespace Gameplay
     {
         FloatRect ball_bounds = pong_ball_sprite.getGlobalBounds();
 
-        if (ball_bounds.top <= top_boundary || ball_bounds.top + ball_bounds.height >= bottom_boundary)
+        if (ball_bounds.top <= top_boundary && velocity.y < 0)
+        {
+            velocity.y = -velocity.y;  // Reverse vertical direction
+            SoundManager::PlaySoundEffect(SoundType::BALL_BOUNCE);
+        }
+        if (ball_bounds.top + ball_bounds.height >= bottom_boundary && velocity.y > 0)
         {
             velocity.y = -velocity.y;  // Reverse vertical direction
             SoundManager::PlaySoundEffect(SoundType::BALL_BOUNCE);
@@ -74,6 +80,7 @@ namespace Gameplay
         const RectangleShape& player2Paddle = player2->getPaddleSprite();
 
         FloatRect ball_bounds = pong_ball_sprite.getGlobalBounds();
+
         FloatRect Player1PaddleBounds = player1Paddle.getGlobalBounds();
         FloatRect player2PaddleBounds = player2Paddle.getGlobalBounds();
 
