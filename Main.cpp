@@ -1,21 +1,23 @@
-// TODO: There are no Namespaces being used
-
+#include <iostream>
 #include <SFML/Graphics.hpp>
-#include "../../Header/Core/GameWindowManager.h"
-using namespace sf;
-using namespace Core;
 
 int main()
 {
-    GameWindowManager * game_window_manager = new GameWindowManager();
-    game_window_manager->initialize();
+    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+    sf::CircleShape shape(100.f);
+    shape.setFillColor(sf::Color::Green);
 
-    while (game_window_manager->isGameRunning())
+    while (window.isOpen())
     {
-        game_window_manager->pollEvents();
-        game_window_manager->update();
-        game_window_manager->render();
-    }
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
 
-    return 0;
+        window.clear();
+        window.draw(shape);
+        window.display();
+    }
 }
