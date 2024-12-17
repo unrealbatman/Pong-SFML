@@ -3,7 +3,11 @@
 
 namespace Gameplay
 {
-	GameplayManager::GameplayManager() {}
+	GameplayManager::GameplayManager() {
+		ball = new Ball();
+		player1 = new Paddle(player1_position_x, player1_position_y);
+		player2 = new Paddle(player2_postion_x, player2_postion_y);
+	}
 
 	void GameplayManager::update() {}
 

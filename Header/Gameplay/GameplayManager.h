@@ -13,9 +13,9 @@ namespace Gameplay
 		float player2_postion_x = 1210.0f;
 		float player2_postion_y = 300.0f;
 
-		Ball* ball = new Ball();
-		Paddle* player1 = new Paddle(player1_position_x, player1_position_y);
-		Paddle* player2 = new Paddle(player2_postion_x, player2_postion_y);
+		Ball* ball;
+		Paddle* player1;
+		Paddle* player2;
 
 	public:
 		GameplayManager();
