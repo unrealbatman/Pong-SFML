@@ -12,7 +12,7 @@ namespace Core
     void GameWindowManager::createGameWindow() {
         game_window->create(
             sf::VideoMode::getDesktopMode(),    // Get screen resolution
-            "Pong Game",                        // Window title
+            game_title,                        // Window title
             sf::Style::Fullscreen               // Fullscreen mode
         );
     }
