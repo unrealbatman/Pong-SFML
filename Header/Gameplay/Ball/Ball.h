@@ -21,7 +21,7 @@ namespace Gameplay
         const float position_y = 325.0f;
 
         const float ball_speed = .5f;
-        Vector2f velocity;  // Velocity vector for ball movement
+        Vector2f velocity;
 
         const float top_boundary = 20.0f;
         const float bottom_boundary = 700.0f;
