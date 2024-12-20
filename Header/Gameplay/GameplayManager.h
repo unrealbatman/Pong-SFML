@@ -17,9 +17,10 @@ namespace Gameplay
 		Paddle* player1;
 		Paddle* player2;
 
+		void initialize();
+
 	public:
 		GameplayManager();
-
 		void update();
 		void render(RenderWindow* game_window);
 	};
