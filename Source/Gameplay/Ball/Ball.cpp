@@ -18,14 +18,14 @@ namespace Gameplay
     {
         pong_ball_sprite.setTexture(pong_ball_texture);
         pong_ball_sprite.setScale(scale_x, scale_y);
-        pong_ball_sprite.setPosition(position_x, position_y);
+        pong_ball_sprite.setPosition(center_position_x, center_position_y);
 
         velocity = Vector2f(ball_speed, ball_speed);
     }
 
     void Ball::reset()
     {
-        pong_ball_sprite.setPosition(position_x, position_y);
+        pong_ball_sprite.setPosition(center_position_x, center_position_y);
         velocity = Vector2f(ball_speed, ball_speed);
     }
 
