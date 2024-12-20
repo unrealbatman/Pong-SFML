@@ -17,6 +17,7 @@ namespace Gameplay
 		float bottomBoundary = 700.0f;
 
 		void createPaddle(float position_x, float position_y);
+		void movePaddle(bool move_up_key_pressed, bool move_down_key_pressed);
 
 	public:
 		Paddle(float position_x, float position_y);
@@ -24,7 +25,6 @@ namespace Gameplay
 		RectangleShape getPaddleSprite();
 		void reset(float position_x, float position_y);
 
-		void movePaddle(bool move_up_key_pressed, bool move_down_key_pressed);
 		void update(bool move_up_key_pressed, bool move_down_key_pressed);
 		void render(RenderWindow* game_window);
 	};

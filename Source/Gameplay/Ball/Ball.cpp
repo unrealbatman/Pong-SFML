@@ -20,7 +20,7 @@ namespace Gameplay
         pong_ball_sprite.setScale(scale_x, scale_y);
         pong_ball_sprite.setPosition(position_x, position_y);
 
-        velocity = Vector2f(ball_speed, ball_speed);     // Initial velocity in a random direction
+        velocity = Vector2f(ball_speed, ball_speed);
     }
 
     void Ball::reset()

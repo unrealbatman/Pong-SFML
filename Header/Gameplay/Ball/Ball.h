@@ -31,13 +31,13 @@ namespace Gameplay
 
         void loadTexture();
         void initializeVariables();
+        void move();
         void reset();
 
     public:
 
         Ball();
 
-        void move();
 
         void handleBoudaryCollision();
         void handlePaddleCollision(Paddle* player1, Paddle* player2);
