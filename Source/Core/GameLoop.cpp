@@ -12,7 +12,7 @@ namespace Core
 
 	bool GameLoop::isGameRunning()
 	{
-		return game_window_manager->isGameOpen();
+		return game_window_manager->isGameRunning();
 	}
 
 	void GameLoop::pollEvent()
