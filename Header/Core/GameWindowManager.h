@@ -22,5 +22,7 @@ namespace Core
         bool isGameRunning();
         void update();
         void render();
+        RenderWindow* getGameWindow();
+
     };
 }
