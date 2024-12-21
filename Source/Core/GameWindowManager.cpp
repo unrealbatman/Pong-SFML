@@ -19,7 +19,7 @@ namespace Core
         return game_window;
     }
 
-    bool GameWindowManager::isGameOpen()
+    bool GameWindowManager::isGameRunning()
     { 
         return game_window->isOpen();
     }
