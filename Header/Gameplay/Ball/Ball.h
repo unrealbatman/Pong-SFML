@@ -22,8 +22,8 @@ namespace Gameplay
 
         string texture_path = "Assets/Textures/Ball.png";
 
-        const float scale_x = 0.2f;
-        const float scale_y = 0.2f;
+        const float scale_x = 0.06f;
+        const float scale_y = 0.06f;
 
         const float position_x = 615.0f;
         const float position_y = 335.0f;
