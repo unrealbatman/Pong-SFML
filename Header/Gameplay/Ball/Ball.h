@@ -36,7 +36,7 @@ namespace Gameplay
         const float speed_multiplier = 100.0f;
 
         float delay_duration = 2.0f;
-        BallState current_state = BallState::Idle; // Initialize the ball's state
+        BallState current_state;
         float elapsed_delay_time = 0.0f;
 
         const float top_boundary = 20.0f;

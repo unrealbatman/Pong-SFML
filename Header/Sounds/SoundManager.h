@@ -21,9 +21,7 @@ namespace Sound
         static const std::string ballBouncePath;
 
     public:
-        SoundManager();
-        ~SoundManager();
-        void Initialize();
+        static void Initialize();
         static void PlaySoundEffect(SoundType soundType);
         static void PlayBackgroundMusic();
 
